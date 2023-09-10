@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import './App.css';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+/* import {HomeLogueada} from './components/paginas/HomeLogueada/HomeLogueada';
+import {Login} from './components/paginas/Login/Login'
+import { Registrarse } from './components/Registrarse/Registrarse'; */
+import { Home } from './paginas/Home/Home';
+import Login from './paginas/Login/Login';
+import Registro from './paginas/Registro/Registro';
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+                <BrowserRouter>
+                    <Routes>
+                     
+                        <Route exact path='/' element ={<Home/>}></Route>
+                        <Route exact path='/login' element = {<Login/>}></Route>
+                        <Route exact path='/register' element = {<Registro/>}></Route>
+                          {/* <Route path='/' element ={<Home/>}></Route>
+                          <Route path='/' element ={<HomeLogueada/>}></Route>
+                          <Route path='/editarPerfil' element = {<EditarPerfil/>}></Route>
+                          <Route path='/categorias' element = {<Categorias/>}></Route>
+                          <Route path='/finanzas' element = {<Finanzas/>}></Route>
+                          <Route path='/cashflow' element = {<Cashflow/>}></Route>
+                          <Route path='/avisos' element = {<Avisos/>}></Route>
+                          <Route path='/registro' element = {<Registrarse/>}></Route>
+                          <Route path='/homeLogueada' element ={<HomeLogueada/>}></Route>
+                          <Route path='/login' element = {<Login/>}></Route> */}
+
+
+                    </Routes>
+                </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

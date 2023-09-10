@@ -1,0 +1,36 @@
+
+/******** NAVBAR PUBLICO *******/
+
+/* TITULO */
+
+.titulo{
+    font-family: var(--letra-titulo);
+    color: var(--color-titulo);
+    text-shadow: 2px 5px 7px rgba(238,38,138,1);
+    text-shadow: 2px 5px 7px rgba(243,236,240,1);
+    text-shadow: 2px 5px 5px rgba(223,101,170,1);
+
+}
+
+.sesion{
+    font-family: 'menus';
+    color: var(--color-menus);
+    font-size: 1.5rem;
+}
+
+.iconoSesion{
+    display: flex;
+    align-items: center;
+}
+
+.iconoSesion>a>svg{
+    margin: 20px;
+    color: var(--color-menus);
+    
+}
+
+.iconoSesion>a>svg:hover{
+    
+    color: var(--color-hoover);
+    transform: scale(1.2);
+}
