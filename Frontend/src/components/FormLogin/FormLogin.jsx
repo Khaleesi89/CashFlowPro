@@ -36,7 +36,7 @@ export const FormLogin = () =>{
                         <button type="submit" className="btn btn-primary">Ingresar</button>
                     </form>
                     <div className="linksRecuperacion">
-                        <Link className="dropdown-item reg" to={('/registro')}>Es nuevo? Regístrese</Link>
+                        <Link className="dropdown-item reg" to={('/register')}>Es nuevo? Regístrese</Link>
                         <a className="dropdown-item pass" href="#">Olvidó password?</a>
                     </div>
             </div>
