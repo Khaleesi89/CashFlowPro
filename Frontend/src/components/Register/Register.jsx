@@ -1,6 +1,7 @@
 import { useState} from "react";
-import {useNavigate} from "react-router-dom"
 import axios from "axios"
+import Swal from 'sweetalert2';
+
 
 
 //para validar los formularios se usa las className is-valid para validar y is-invalid para dar el error. en los texto para mostrar q error tienen se pone en clase invalid-feedback y para estar bien se pone el valid-feedback
@@ -10,40 +11,46 @@ export const Register = () =>{
     const [usuario, setUsuario] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+   
+    
 
-    const handleRegister = async (e)=>{
+    const handleRegister = async (e) => {
         e.preventDefault();
         const data = {
-            nombre: e.target.nombre.value,
-            apellido: e.target.apellido.value,
-            usuario: e.target.usuario.value,
-            email: e.target.email.value,
-            password: e.target.password.value,
-            color: '#593196'
-        }
+          nombre: e.target.nombre.value,
+          apellido: e.target.apellido.value,
+          usuario: e.target.usuario.value,
+          email: e.target.email.value,
+          password: e.target.password.value,
+          color: '#593196'
+        };
+      
         console.log(data);
-        axios.post('http://localhost:8000/api/register',data).then(
-            res =>{
-                console.log(res);
-            }
-        ).catch(err =>
-            console.log(err));
-
-
-        /* try{
-
-            await axios.post("http://localhost:8000/api/register", {nombre, apellido, usuario, email, password});
-            setNombre("");
-            setApellido("");
-            setUsuario("");
-            setEmail("");
-            setPassword("");
-            navigate("/")//se usa para redirigir a otra página en caso de registro exitoso
-        }catch(e){
-            console.log(e);
-        } */
-    }
+      
+        try {
+          const response = await axios.post('http://localhost:8000/api/register', data);
+          console.log(response);
+          Swal.fire({
+            icon: 'success',
+            title: 'Registro de usuario',
+            text: 'Su registro se ha realizado con éxito!',
+            timer: 1500,
+          });
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 1500);
+        } catch (error) {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Registro de usuario',
+            text: 'Ocurrió un error al registrar!',
+            timer: 1500,
+          });
+        }
+      };
+      
+    
     return(
 
         <>
