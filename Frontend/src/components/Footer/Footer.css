@@ -6,18 +6,21 @@
 }
 
 .dataFiscal>img{
-    width: 50%;
+    width: 30%;
     margin-top: 10px;
     margin-left: 10px;
 }
 .sb_footer-links{
-    display: flex;
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   
     
 }
 
 .sb_footer-links_div{
+    
     margin-top: 15px;
-    margin-left: 150px;
+    margin-left: 3rem;
 }
 
 .sb_footer-links_div>a>p{

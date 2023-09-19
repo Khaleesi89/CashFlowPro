@@ -1,0 +1,34 @@
+/***************PAGINA DE PERSONALIZACION*******************/
+
+
+.personalizacion-home{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px; /* Espacio entre las celdas */
+    justify-items: center; /* Centra horizontalmente */
+    align-items: center;
+   
+
+}
+
+
+
+
+/***************TABLA DE COLORES *******************/
+.tabla-colores{
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(7, 1fr); /* Cambia el número de columnas según tus necesidades */
+    margin-bottom: 10rem;
+    margin-top: 5rem;
+}
+
+.color-button{
+    width: 50px;
+    height: 50px;
+    border: none;
+}
+
+.color-button:hover{
+    transform: scale(1.2);
+}

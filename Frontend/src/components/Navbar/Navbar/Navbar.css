@@ -1,6 +1,3 @@
-
-/******** NAVBAR PUBLICO *******/
-
 /* TITULO */
 
 .titulo{
@@ -34,7 +31,6 @@
     color: var(--color-hoover);
     transform: scale(1.2);
 }
-
 
 .homecito{
     font-family: 'menus';

@@ -35,7 +35,16 @@
 
 }
 
-html{
-  width: 100%;
-  height: 100%;
+body{
+  width: 100vw;
+  height: 100vh;
+}
+
+/*******************ESTILOS COMPARTIDOS POR TODA LA APP ****************/
+
+.titulo-seccion{
+  margin: 4rem;
+  font-family: 'parrafos';
+  font-weight: bolder;
+  font-family: 'parrafos';
 }

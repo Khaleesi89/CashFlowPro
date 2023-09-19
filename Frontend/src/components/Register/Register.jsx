@@ -57,21 +57,21 @@ export const Register = () =>{
            
             <form className="text-center" onSubmit={handleRegister}>
                 <div className="col">
-                    <label htmlFor="validationServer01" className="form-label">Nombre</label>
+                    <label htmlFor="nombre" className="form-label">Nombre</label>
                     <input type="text" className="form-control is-valid" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" required />
                     <div className="invalid-feedback">
                         ok!
                     </div>
                 </div>
                 <div className="col">
-                    <label htmlFor="validationServer02" className="form-label">Apellido</label>
+                    <label htmlFor="apellido" className="form-label">Apellido</label>
                     <input type="text" className="form-control is-valid" value={apellido} onChange={(e)=> setApellido(e.target.value)} id="apellido" required />  
                     <div className="invalid-feedback">
                         ok!
                     </div>
                 </div>
                 <div className="col">
-                    <label htmlFor="validationServerUsername" className="form-label">Usuario</label>
+                    <label htmlFor="usuario" className="form-label">Usuario</label>
                     <div className="input-group has-validation">
                         <input type="text" className="form-control is-valid"  value={usuario} onChange={(e)=> setUsuario(e.target.value)}  id="usuario" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div id="validationServerUsernameFeedback" className="invalid-feedback">
@@ -80,11 +80,11 @@ export const Register = () =>{
                     </div>
                 </div>
                 <div className="col">
-                    <label htmlFor="inputEmail4" className="form-label">Email</label>
+                    <label htmlFor="email" className="form-label">Email</label>
                     <input type="email" className="form-control is-valid"  value={email} onChange={(e)=> setEmail(e.target.value)} id="email" required/>
                 </div>
                 <div className="col">
-                            <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>
+                            <label htmlFor="password" className="form-label">Password</label>
                             <input type="password" className="form-control"  value={password} onChange={(e)=> setPassword(e.target.value)} id="password" placeholder="Password" />
                         </div>
                 <div className="col">

@@ -1,0 +1,15 @@
+
+button{
+
+        color: var(--color-menus);
+        font-family: 'menus';
+        font-size: 1.5rem;
+        font-weight: bolder;
+        border: 1px solid var(--color-titulo);
+        padding: 15px;
+        border-radius: 15px;
+        background-color: var(--color-titulo);
+        text-align: center;
+        letter-spacing: 3px;
+        margin: 1.5rem;
+}
