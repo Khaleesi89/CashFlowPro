@@ -40,9 +40,10 @@ function App() {
                         <Route exact path='/register' element = {<Registro/>}></Route>
 
                         {/* RUTAS PRIVADAS */}
-                        <Route path="/home" element={<PrivateRoutes component={<HomeLogueada/>} />} />
-                        <Route path="/personalizacion" element={<PrivateRoutes component={<Personalizacion/>} />} />
-
+                       {/*  <Route path="/home" element={<PrivateRoutes component={<HomeLogueada/>} />} />
+                        <Route path="/personalizacion" element={<PrivateRoutes component={<Personalizacion/>} />} /> */}
+                        <Route exact path='/home' element = {<HomeLogueada/>}></Route>
+                        <Route exact path='/personalizacion' element = {<Personalizacion/>}></Route>
 
                         
                         {/* PARA EL 404 */}

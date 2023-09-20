@@ -6,18 +6,23 @@ export const SesionIniciada = ({nombre}) => {
     const navigate = useNavigate();
     const logout = (e) => {
         e.preventDefault();
-        axios.post(`/api/logout`).then(res => {
-          if (res.data.status === 200) {
-            localStorage.removeItem('auth_token');
-            localStorage.removeItem('color');
-            localStorage.removeItem('auth_usuario');
-            localStorage.removeItem('nombre');
-            navigate('/');
-          }
+        console.log(e);
+        axios.get('/sanctum/csrf-cookie').then(response => {
+          axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('auth_token')}`;
+          axios.post('api/logout').then(res => {
+            console.log(res);
+            if (res.data.status === 200) {
+              localStorage.removeItem('auth_token');
+              localStorage.removeItem('color');
+              localStorage.removeItem('auth_usuario');
+              localStorage.removeItem('nombre');
+              navigate('/');
+            }
+          });
         });
-       
+      }
 
-    }
+      
     return(
         <>
             
@@ -33,3 +38,4 @@ export const SesionIniciada = ({nombre}) => {
         
     )
 }
+ /* navigate('/'); */

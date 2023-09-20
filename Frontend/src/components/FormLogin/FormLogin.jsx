@@ -29,7 +29,6 @@ export const FormLogin = () =>{
                         localStorage.setItem('color', res.data.auth_usuario.color);
                         localStorage.setItem('nombre', res.data.auth_usuario.nombre);
                         //ALERTAS
-                        console.log(response);
                         console.log(res);
                         Swal.fire({
                         icon: 'success',
