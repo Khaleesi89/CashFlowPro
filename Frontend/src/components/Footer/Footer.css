@@ -6,7 +6,7 @@
 }
 
 .dataFiscal>img{
-    width: 30%;
+    width: 90px;
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -62,3 +62,35 @@
     transition-timing-function: linear;
     };
 
+
+
+
+
+/* @media screen and(min-width: 1039px) {
+    .sb_footer-links_div{
+        display: flex;
+        margin-bottom: 10px;
+      } 
+        
+} */
+/* @media screen and(max-width: 1269px) {
+
+    .dataFiscal>img{
+        width: 90px;
+    }
+} */
+/* menor o igual a 600px */
+
+  
+    /* Hacer que los enlaces del footer se apilen verticalmente */
+    /* .sb_footer-links a {
+      display: block;
+      margin-bottom: 10px;
+    } */
+  
+    /* Ajustar el margen de los íconos de redes sociales */
+    /* .socialmedia a {
+      margin-right: 0;
+      margin-bottom: 10px;
+    } */
+ 

@@ -42,6 +42,7 @@
     color: var(--color-menus);
     margin-right: 2rem;
     margin-left: 2.6rem;
+    
 }
 
 
@@ -77,4 +78,9 @@
 }
 .navbar{
     width: 100vw;
+    background-color: #593196 ;
+}
+.container-fluid{
+    background-color: #593196 ;
+
 }

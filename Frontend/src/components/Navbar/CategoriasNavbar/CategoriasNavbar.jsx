@@ -1,15 +1,23 @@
 import {Link} from 'react-router-dom'
+import CambioColor from '../../CambioColor/CambioColor';
 export const CategoriasNavbar = () => {
+
+    
+  //PARA PONER EL COLOR QUE HAY REGISTRADO EN EL LOCALSTORAGE SEGUN LA BASE DE DATOS
+
+  const misColores = CambioColor();
+
+
     return(
         <>
             <ul className="navbar-nav me-auto">
             
-                <Link className="nav-link homecito" to={('/')}>Home</Link>
-                <Link className="nav-link homecito" to={('/editarPerfil')}>Editar Perfil</Link>
-                <Link className="nav-link homecito" to={('/categorias')}>Categorías</Link>
-                <Link className="nav-link homecito" to={('/finanzas')}>Mis finanzas</Link>
-                <Link className="nav-link homecito" to={('/cashflow')}>Cashflow</Link>
-                <Link className="nav-link homecito" to={('/avisos')}>Avisos</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/')}>Home</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/editarPerfil')}>Editar Perfil</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/categorias')}>Categorías</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/finanzas')}>Mis finanzas</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/cashflow')}>Cashflow</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/avisos')}>Avisos</Link>
                 
             </ul>
         </>
