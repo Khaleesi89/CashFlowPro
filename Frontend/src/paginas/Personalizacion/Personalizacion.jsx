@@ -1,13 +1,61 @@
 import { Navbar } from "../../components/Navbar/Navbar"
 import Footer from "../../Components/Footer/Footer"
 import './Personalizacion.css'
+import axios from "axios"
 
 
 export const Personalizacion = () => {
 
-    const guardarColor = (color) =>{
-        console.log(color);
+    const guardarColor = async (color) => {
+
+            //se decidió guardar en el localstorage del color primero y al cerrar sesion, hacer el cambio en la base de datos
+        
+            console.log(color);
+            let usuario = localStorage.getItem('auth_usuario');
+            let usuarioObjeto = JSON.parse(usuario);
+            let id = usuarioObjeto.id;
+            console.log(id);
+            localStorage.setItem('color', color);
+            //window.location.href = '/personalizacion';
+            window.location.reload()
+          
     }
+         /*  const data = {
+            id: id,
+            color: color,
+          };
+      
+          console.log(data);
+          const response = await axios.post('http://localhost:8000/api/personalizacion', data);
+          console.log(response); */
+      
+         /*  if (response) {
+            localStorage.setItem('color', color);
+            //window.location.href = '/personalizacion';
+            window.location.reload()
+          }
+        } catch (error) {
+          console.error('aqui error en Personalizacion');
+          console.error(error);
+        } */
+      
+        //TENGO QUE VER SI EL CAMBIO DE COLOR LO PONGO EN EL LOCALSTORAGE Y LO GUARDO CUANDO ESTE CERRANDO LA SESION
+        //O LO HAGO CUANDO MARCA EL COLOR Y LO GUARDO ENSEGUIDA A LA BASE DE DATOS
+
+        //probando haciendo los cambios en la base de datos directamente
+       /*  try {
+            const response = await axios.post('http://localhost:8000/api/personalizacion', data);
+            console.log(response);
+            if(response){
+                localStorage.setItem('color', color);
+                window.location.href = '/personalizacion';
+            }
+        } catch (error) {
+            console.error(error);
+          } */
+        
+
+
     return (
         <>
             

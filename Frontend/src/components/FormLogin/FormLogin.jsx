@@ -24,8 +24,8 @@ export const FormLogin = () =>{
                 const response = axios.post('api/login', data).then(res =>{
                     if (res.data.status === 200) {
                         //GUARDO INFO QUE VOY A UTILIZAR EN LA APP
-                        localStorage.setItem('auth_token', res.data.access_token);
-                        localStorage.setItem('auth_usuario', res.data.auth_usuario);
+                        localStorage.setItem('auth_token', JSON.stringify(res.data.access_token));
+                        localStorage.setItem('auth_usuario', JSON.stringify(res.data.auth_usuario));
                         localStorage.setItem('color', res.data.auth_usuario.color);
                         localStorage.setItem('nombre', res.data.auth_usuario.nombre);
                         //ALERTAS
