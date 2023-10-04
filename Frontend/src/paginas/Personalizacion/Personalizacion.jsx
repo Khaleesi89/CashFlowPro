@@ -1,7 +1,7 @@
-import { Navbar } from "../../components/Navbar/Navbar"
-import Footer from "../../Components/Footer/Footer"
 import './Personalizacion.css'
 import axios from "axios"
+import { Navbar } from '../../components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 
 
 export const Personalizacion = () => {
@@ -19,7 +19,11 @@ export const Personalizacion = () => {
             //window.location.href = '/personalizacion';
             window.location.reload()
           
+          
     }
+
+   
+
          /*  const data = {
             id: id,
             color: color,
@@ -58,7 +62,6 @@ export const Personalizacion = () => {
 
     return (
         <>
-            
         <Navbar/>
         <div className="personalizacion-home" >
             <div className="titulo-seccion ">
@@ -109,6 +112,7 @@ export const Personalizacion = () => {
             </div>
         </div>
         <Footer/>
+
     </>
     )
 }

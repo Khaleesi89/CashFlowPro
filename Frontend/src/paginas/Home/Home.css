@@ -10,12 +10,15 @@ body{
     margin: 15px;
     display: flex;
     
+    
 }
 
 .imagen{
-    width: 60%;
+   width: 60%;
     justify-content: flex-end;
-    margin-top: 20px; 
+    margin-top: 20px;
+   
+    
 }
 .paRegistrarse>.botoncito{
     color: var(--color-menus);
@@ -36,11 +39,13 @@ body{
 }
 
 .slogan{
+    
     text-align: center;
     color: var(--color-titulo);
     margin-left: 10%;
-    margin-top: 3%;
-    font-family: 'parrafos';
+    margin-right: 10%;
+    margin-top: 10%;
+    font-family: 'parrafos'; 
     
 }
 
@@ -58,3 +63,91 @@ span{
     text-shadow: 2px 5px 5px rgba(223,101,170,1);
 } 
 
+
+@media (max-width: 1400px) {
+    
+    .imagen {
+        order: 2; /* Cambia el orden, pone la imagen debajo */
+        align-content: center;
+        width: 40%;
+        
+    }
+}
+
+
+@media (max-width: 1240px) {
+    .home-container {
+        flex-direction: column; /* Cambia la dirección de los elementos a columna */
+    }
+
+    .slogan {
+        width: 40%;
+        margin: auto;
+        margin-top: 10%;
+        order: 1; /* Cambia el orden, pone el slogan encima */
+    }
+
+}
+
+    .imagen {
+        order: 2; /* Cambia el orden, pone la imagen debajo */
+        align-content: center;
+        
+        margin: auto;
+        margin-top: 30px;
+        
+
+        
+    }
+    .paRegistrarse>.botoncito{
+        width: 60%;
+        margin: auto;
+    }
+
+
+@media (max-width: 1048px) {
+    
+    .imagen {
+        order: 2; /* Cambia el orden, pone la imagen debajo */
+        align-content: center;
+        width: 40%;
+        
+    }
+    .sb_footer-links {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .dataFiscal{
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+    .dequesetrata{
+        flex-direction: column; 
+    }
+
+    .imagenInfo>img {
+        /* FALTA ESTO */
+    }
+
+}
+
+@media (max-width: 919px) {
+    
+    .relleno>p{
+        display: none;
+        height: 50px;
+
+    }
+    .relleno{
+        
+        height: 50px;
+
+    }
+    
+    .imagen {
+        align-content: center;
+        width: 70%;
+        
+    }
+
+}

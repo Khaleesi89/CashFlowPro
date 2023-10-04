@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('metas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('perfil_id')->constrained('perfiles');            
+            $table->foreignId('user_id')->constrained('users');
             $table->string('descripcion')->unique();
             $table->string('importe');
             $table->timestamps();

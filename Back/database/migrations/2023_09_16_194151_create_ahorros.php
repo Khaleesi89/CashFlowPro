@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ahorros', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->foreignId('perfil_id')->constrained('perfiles');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('meta_id')->constrained('metas');
             $table->string('importe');
             $table->timestamps();

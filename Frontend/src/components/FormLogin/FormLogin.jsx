@@ -11,6 +11,9 @@ export const FormLogin = () =>{
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
 
+
+    //MANEJO DE ERRORES EN LOS FORMULARIOS
+
     const handleLogin = (e) =>{
         e.preventDefault();
         const data = {
@@ -34,19 +37,20 @@ export const FormLogin = () =>{
                         icon: 'success',
                         title: 'Acceso exitoso',
                         text:'Bienvenid@ '+ data.usuario,
-                        timer: 2000,
+                        timer: 1300,
                         });
                         navigate('/home')
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Acceso denegado',
+                            text:'Revise que sus datos estén correctos',
+                            timer: 2000,
+                            });
                     }
                 });
             } catch (error) {
                 console.error(error);
-                Swal.fire({
-                icon: 'error',
-                title: 'Acceso denegado',
-                text:'Revise que sus datos estén correctos',
-                timer: 1300,
-                });
             };
         });
     }

@@ -5,24 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function cambioColor(Request $request,$id){
+   
+    public function setColor(Request $request){
         try {
-            $usuario = User::find($id);
-
-            if (!$usuario) {
-                return response()->json(['mensaje' => 'Usuario no encontrado'], 404);
-            }
-
-            $usuario->color = $request->input('color');
-            $usuario->save();
-
-            return response()->json(['mensaje' => 'Color de usuario actualizado correctamente'], 200);
+            
+            //$idUsuario = Auth::id();
+            $usuario = User::find($request->id);
+            $usuario->color = $request->color;
+            $usuario->save();    
+            return response()->json(true);
         } catch (\Exception $e) {
-            return response()->json(['mensaje' => 'Error al actualizar el color del usuario'], 500);
+            return response()->json(false);
         }
     }
         
+    
+        
 }
+

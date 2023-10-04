@@ -1,6 +1,6 @@
 import {Register} from "../../components/Register/Register";
-import {Footer} from "../../components/Footer/Footer";
-import { Navbar } from "../../components/Navbar/Navbar";
+import { Navbar } from '../../components/Navbar/Navbar';
+import Footer from "../../Components/Footer/Footer";
 
 /*aca tengo que hacer la diferenciación de si está iniciada la sesion o no para que muestre un navbar u otro*/
 
@@ -18,7 +18,7 @@ export const Registro = () => {
                 </div>
             </div>
             <Footer/>
-            
+
         </>
         
     )

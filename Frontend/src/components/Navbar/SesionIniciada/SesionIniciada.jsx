@@ -21,15 +21,19 @@ export const SesionIniciada = ({nombre}) => {
           let id = usuarioObjeto.id;
           console.log(id);
           let color = localStorage.getItem('color');
-          actualizarColorUsuario(id, color);
-          //ELIMINACION DE TODO LO QUE HAY EN EL LOCALSTORAGE
-          localStorage.removeItem('auth_token');
-          localStorage.removeItem('color');
-          localStorage.removeItem('auth_usuario');
-          localStorage.removeItem('nombre');
-          // Llamar a la función para borrar una cookie específica
-          borrarCookie("XSRF-TOKEN");
-          navigate('/');
+          if(actualizarColor(color,id)){
+            //ELIMINACION DE TODO LO QUE HAY EN EL LOCALSTORAGE
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('color');
+            localStorage.removeItem('auth_usuario');
+            localStorage.removeItem('nombre');
+            // Llamar a la función para borrar una cookie específica
+            borrarCookie("XSRF-TOKEN");
+            navigate('/');
+
+          }else{
+            console.log('error al actualizar color')
+          }
 
       }
 
@@ -41,19 +45,12 @@ export const SesionIniciada = ({nombre}) => {
 
       //FUNCION PARA ACTUALIZAR COLOR
 
-      const actualizarColorUsuario = async (idUsuario, nuevoColor) => {
-        try {
-          const response = await axios.put(`http://localhost:8000/api/usuarios/${idUsuario}`, {
-            color: nuevoColor,
-          });
-          console.log(response.data); // Puedes hacer algo con la respuesta del backend si lo deseas
-          return response.data;
-        } catch (error) {
-          console.error(error);
-          throw new Error('Error al actualizar el color del usuario');
-        }
-      };
-
+      const actualizarColor = async (color,id) =>{
+        const response = await axios.post('/api/color',{color: color, id:id});
+        console.log(response);
+        const data = response;
+        return data;
+    } 
      
      
     return(

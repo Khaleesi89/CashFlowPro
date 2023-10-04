@@ -14,8 +14,8 @@ export const CategoriasNavbar = () => {
             
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/')}>Home</Link>
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/editarPerfil')}>Editar Perfil</Link>
-                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/categorias')}>Categorías</Link>
-                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/finanzas')}>Mis finanzas</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/categorias-lista')}>Categorías</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/historial-presupuesto')}>Historial</Link>
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/cashflow')}>Cashflow</Link>
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/avisos')}>Avisos</Link>
                 

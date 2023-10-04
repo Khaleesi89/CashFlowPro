@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,18 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+
+/* NO SE USO SANCTUM PORQUE NO VALIDABA LAS SESIONES */
 Route::middleware('auth:sanctum')->group(function(){
     /* Route::get('/user', [AuthController::class, 'user']); */
     /* Route::post('/logout', [AuthController::class, 'logout']); */
     
-    Route::put('usuarios/{id}', [UserController::class, 'cambioColor']);
 });
+
+/* PERSONALIZACION */
+Route::post('/color', [UserController::class, 'setColor']);
+
+/* CATEGORIAS */
+Route::post('/categorias/{id}', [CategoriaController::class, 'categoriasUsuario']);
+Route::post('/categoria-alta', [CategoriaController::class, 'create']);
+Route::post('/categoria-editar', [CategoriaController::class, 'update']);

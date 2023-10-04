@@ -10,7 +10,6 @@ import axios from "axios"
 import { CategoriasNavbar } from "./CategoriasNavbar/CategoriasNavbar"
 import { SesionIniciada } from "./SesionIniciada/SesionIniciada"
 import CambioColor from "../CambioColor/CambioColor"
-import { useEffect } from "react"
 
 
 export const Navbar = () => {

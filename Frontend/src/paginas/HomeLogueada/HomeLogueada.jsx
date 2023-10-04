@@ -28,6 +28,7 @@ export const HomeLogueada = () => {
                 </div>
             </div>
             <Footer/>
+
         </>
     )
 }

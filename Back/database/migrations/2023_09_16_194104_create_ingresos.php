@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('descripcion')->nullable();;
             $table->string('importe');
-            $table->foreignId('perfil_id')->constrained('perfiles');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('categoria_id')->constrained('categorias');
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 import { Navbar } from "../../components/Navbar/Navbar";
 import FormLogin from "../../components/FormLogin/FormLogin";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 
 
 
@@ -16,7 +16,6 @@ export const Login = () =>{
         
         </div>
         <Footer/>
-        
         </>
 
     )}
