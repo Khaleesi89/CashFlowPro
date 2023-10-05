@@ -22,43 +22,6 @@ export const Personalizacion = () => {
           
     }
 
-   
-
-         /*  const data = {
-            id: id,
-            color: color,
-          };
-      
-          console.log(data);
-          const response = await axios.post('http://localhost:8000/api/personalizacion', data);
-          console.log(response); */
-      
-         /*  if (response) {
-            localStorage.setItem('color', color);
-            //window.location.href = '/personalizacion';
-            window.location.reload()
-          }
-        } catch (error) {
-          console.error('aqui error en Personalizacion');
-          console.error(error);
-        } */
-      
-        //TENGO QUE VER SI EL CAMBIO DE COLOR LO PONGO EN EL LOCALSTORAGE Y LO GUARDO CUANDO ESTE CERRANDO LA SESION
-        //O LO HAGO CUANDO MARCA EL COLOR Y LO GUARDO ENSEGUIDA A LA BASE DE DATOS
-
-        //probando haciendo los cambios en la base de datos directamente
-       /*  try {
-            const response = await axios.post('http://localhost:8000/api/personalizacion', data);
-            console.log(response);
-            if(response){
-                localStorage.setItem('color', color);
-                window.location.href = '/personalizacion';
-            }
-        } catch (error) {
-            console.error(error);
-          } */
-        
-
 
     return (
         <>

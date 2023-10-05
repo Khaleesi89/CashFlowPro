@@ -36,6 +36,6 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::post('/color', [UserController::class, 'setColor']);
 
 /* CATEGORIAS */
-Route::post('/categorias/{id}', [CategoriaController::class, 'categoriasUsuario']);
+Route::get('/categorias/{id}', [CategoriaController::class, 'categoriasUsuario']);
 Route::post('/categoria-alta', [CategoriaController::class, 'create']);
 Route::post('/categoria-editar', [CategoriaController::class, 'update']);

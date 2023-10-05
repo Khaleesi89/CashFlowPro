@@ -89,6 +89,15 @@ class CategoriaController extends Controller
     }
 
 
+    /* BUSCAR CATEGORIA POR ID */
 
+    /* public function categoriasBuscarId($idCategoria, $idUsuario){
+        //primero corroboro que ese usuario tenga la categoria que le llego por parametro
+        $categoriaEsUsuario = Categoria::where('user_id', $idUsuario)->where('id', $idCategoria)->exists();
+        if($categoriaEsUsuario){
+            $categoriaModificar = Categoria::find($idCategoria);
+            return $categoriaModificar->toJson();
+        }
+    } */
     
 }

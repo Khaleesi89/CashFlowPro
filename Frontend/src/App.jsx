@@ -52,7 +52,7 @@ function App() {
           <Route exact path='/historial-presupuesto' element={<Presupuestos/>}/>
           <Route exact path='/categorias-lista' element={<CategoriasABM/>}/>
           <Route exact path='/categorias-crear' element={<AltaCategoria/>}/>
-          <Route exact path='/categorias-editar' element={<EdicionCategoria/>}/>
+          <Route exact path='/categorias-editar/:idCategoria/:descripcion_categoria/:tipo_categoria' element={<EdicionCategoria/>}/>
           <Route exact path='/editar-perfil' element={<PaginaConstruccion/>}/>
           <Route exact path='/avisos' element={<PaginaConstruccion/>}/>
           

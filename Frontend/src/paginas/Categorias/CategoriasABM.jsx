@@ -1,85 +1,95 @@
-import React from 'react';
-import { Navbar } from '../../components/Navbar/Navbar'
-import Footer from '../../Components/Footer/Footer'
-import { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Navbar } from '../../components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
+import { TabulatorFull as Tabulator } from "tabulator-tables";
+import "tabulator-tables/dist/css/tabulator.min.css";
 
-function CategoriasABM() {
+export const CategoriasABM = () => {
 
-  
-    const [categorias, setCategorias] = useState([]);
-  
-    // Resto del código del componente
-  
+  const [categorias, setCategorias] = useState([]);
+  const tableRef = useRef(null);
 
-  
-/* FUNCION PARA TRAER LAS CATEGORIAS DEL USUARIO LOGUEADO */
-  const categoriasUsuario = () => {
+  const fetchData = useCallback(async () => {
+    let usuario = localStorage.getItem('auth_usuario');
+    let usuarioObjeto = JSON.parse(usuario);
+    let id = usuarioObjeto.id;
+    console.log(id);
+    const response = await fetch("http://localhost:8000/api/categorias/"+id);
+    const data = await response.json();
+    setCategorias(data);
+  }, []);
 
-  }
-/* FUNCION PARA HACER EL PDF */
-  const generarPDF = () =>{
-    const doc = new jsPDF();
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-    
-  }
-  
-  const generarXL = () =>{
-    const doc = new jsPDF();
+  useEffect(() => {
+    if (tableRef.current && categorias.length > 0) {
+      const table = new Tabulator(tableRef.current, {
+        data: categorias,
+        autoResize: true,
+        placeholder: "No existen categorías para este usuario.",
+        layout: "fitColumns", 
+        columns: [
+          { title: "Descripción", field: "descripcion", width: 200, hozAlign: "center" },
+          { title: "Tipo de categoría", field: "tipo_categoria", width: 100, hozAlign: "center" },
+          { title: "Acción", field: "", width: 100, hozAlign: "center",formatter: function (cell, formatterParams) {
+/*             console.log(cell)
+            console.log(cell.getRow().getData())
+              console.log(cell.getRow().getData().descripcion)*/ 
+            let id_categoria = cell.getRow().getData().id;
+            let descripcion_categoria = cell.getRow().getData().descripcion;
+            let tipo_categoria = cell.getRow().getData().tipo_categoria; 
+            let boton = `<a href="/categorias-editar/${id_categoria}/${descripcion_categoria}/${tipo_categoria}" class="btn btn-primary">Editar</a>`;
+            return boton;
+        },},
+        ],
+      });
+    }
+  }, [categorias]);
 
-    
-  }
-  
+  const handleDownloadCSV = () => {
+    console.log("Downloading csv");
+    if (tableRef.current && tableRef.current.table) {
+      tableRef.current.table.download("csv", "data.csv");
+    }
+  };
+
+  const handleDownloadXLSX = useCallback(() => {
+    console.log("Downloading xlsx");
+    if (tableRef.current && tableRef.current.table) {
+      tableRef.current.table.download("xlsx", "data.xlsx", { sheetName: "My Data" });
+    }
+  }, []);
+
+  const handleDownloadPDF = useCallback(() => {
+    console.log("Downloading PDF");
+    if (tableRef.current && tableRef.current.table) {
+      tableRef.current.table.download("pdf", "data.pdf", {
+        orientation: "portrait",
+        title: "Example Report",
+      });
+    }
+  }, []);
 
   return (
     <>
-    
-    <Navbar/>
-
-    <div className="tabla m-5 p-5">
+      <Navbar />
+      <div className="tabla m-5 p-5">
         <div className="titulo-seccion">
           <h2>Listado de categorías</h2>
         </div>
         <a href="/categorias-crear"> <button className='btn-dark'>Crear Categoría</button></a>
         <div className="generar">
-          <button className='btn-dark' onClick={generarPDF}>PDF</button>
-          <button className='btn-dark' onClick={generarXL}>XL</button>
+          <button id="download-csv" onClick={handleDownloadCSV}>CSV</button>
+          <button id="download-xlsx" onClick={handleDownloadXLSX}>XLSX</button>
+          <button id="download-pdf" onClick={handleDownloadPDF}>PDF</button>
         </div>
-        <table className="table table-hover">
-          {/* encabezado de la tabla */}
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-          {/* tuplas */}
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colSpan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-        </table>
-    </div>
-    <Footer/>
+        <div ref={tableRef} id="example-table"></div>
+      </div>
+      <Footer />
     </>
-
   )
 }
 
-export default CategoriasABM
+export default CategoriasABM;
