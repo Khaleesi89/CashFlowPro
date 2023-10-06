@@ -12,7 +12,7 @@ export const CategoriasNavbar = () => {
         <>
             <ul className="navbar-nav me-auto">
             
-                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/')}>Home</Link>
+                <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/home')}>Home</Link>
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/editarPerfil')}>Editar Perfil</Link>
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/categorias-lista')}>Categorías</Link>
                 <Link className="nav-link homecito" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} to={('/historial-presupuesto')}>Historial</Link>

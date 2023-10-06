@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import './AltaCategoria.css'
 
 function AltaCategoria() {
 
@@ -52,31 +53,28 @@ function AltaCategoria() {
         <>
         <Navbar/>
         <div className="body-categoria">
-        <div className="titulo-seccion">
-          <h2>Alta de categoría</h2>
-        </div>
-          <form className="text-center" onSubmit={altaCategoria}>{/* is-valid en la clase para validad de bootstrap */}
-              <div className="col">
-                  <label htmlFor="descripcion" className="form-label">Descripción</label>
-                  <input type="text" className="form-control " value={descripcion} onChange={(e)=> setDescripcion(e.target.value)} id="descripcion" required />
-                  <div className="invalid-feedback">
-                      ok!
+            <div className="titulo-seccion">
+              <h2>Alta de categoría</h2>
+            </div>
+            <form className="formulario text-center" onSubmit={altaCategoria}>{/* is-valid en la clase para validad de bootstrap */}
+                <div className="col">
+                    <label htmlFor="descripcion" className="form-label">Descripción</label>
+                    <input type="text" className="form-control " value={descripcion} onChange={(e)=> setDescripcion(e.target.value)} id="descripcion" required />
+                </div>
+                <div className="col">
+                  <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="tipo_categoria" id="ingreso" value="ingreso"/>
+                    <label className="form-check-label" htmlFor="ingreso">Ingreso</label>
                   </div>
-              </div>
-              <div className="col">
-                <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="tipo_categoria" id="ingreso" value="ingreso"/>
-                  <label className="form-check-label" htmlFor="ingreso">Ingreso</label>
+                  <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="tipo_categoria" id="gasto" value="gasto"/>
+                    <label className="form-check-label" htmlFor="gasto">Gasto</label>
+                  </div>
                 </div>
-                <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="tipo_categoria" id="gasto" value="gasto"/>
-                  <label className="form-check-label" htmlFor="gasto">Gasto</label>
+                <div className="col">
+                <button className="btn btn-primary" type="submit">Crear Categoría</button>
                 </div>
-              </div>
-              <div className="col">
-              <button className="btn btn-primary" type="submit">Crear Categoría</button>
-              </div>
-          </form>
+            </form>
 
         </div>
         <Footer/>

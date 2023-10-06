@@ -4,6 +4,7 @@ import Footer from '../../../Components/Footer/Footer';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import './EdicionCategoria.css';
 
 export const EdicionCategoria = () => {
   const [descripcion, setDescripcion] = useState('');
@@ -64,7 +65,7 @@ export const EdicionCategoria = () => {
         <div className="titulo-seccion">
           <h2>Editar categoría</h2>
         </div>
-        <form className="text-center" onSubmit={editarCategoria}>
+        <form className=" formulario text-center" onSubmit={editarCategoria}>
           <div className="col">
             <label htmlFor="descripcion" className="form-label">Descripción</label>
             <input
@@ -73,7 +74,7 @@ export const EdicionCategoria = () => {
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
               id="descripcion"
-              required
+              
             />
             <div className="invalid-feedback">
               ok!

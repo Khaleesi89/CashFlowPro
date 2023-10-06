@@ -1,0 +1,80 @@
+
+
+#example-table{
+    width:52.7%;
+    margin: auto;
+    border-radius: 30px;
+   
+}
+
+.tabulator{
+    font-family: 'parrafos';
+    font-size: larger;
+    
+}
+
+.tabulator-group{
+    background-color: var(--color-secundario)!important;
+    /* color: aliceblue!important; */
+}
+
+.tabulator-cell{
+    background-color: var(--color-menus)!important;
+}
+
+.tabulator-row>.tabulator-cell:hover{
+    background-color: rgb(244, 223, 245) ; 
+}
+.tabulator-header,.tabulator-col-title,.tabulator,.tabulator-col{
+    background-color: var(--color-navbar)!important;;
+    color: aliceblue;
+
+}
+
+.categorias{
+    display: flex;
+    flex-direction: column;
+}
+
+.generar{
+    position: absolute;
+    left: 1450px;
+    top: 330px;
+}
+
+.generar>button{
+    font-size: 1rem;
+    padding: 8px;
+}
+
+.generar>button:hover{
+    background-color: var(--color-navbar);
+    transform: scale(1.1);
+}
+
+.cateBoton{
+    position: relative;
+    left: 520px;
+}
+
+.cateBoton>button:hover{
+    background-color: var(--color-navbar);
+    transform: scale(1.1);
+}
+
+.btn{
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.btn:hover{
+    background-color: var(--color-titulo);
+    transform: scale(1.1);
+}
+
+.categorias>.titulo-seccion{
+    margin: auto;
+    padding: auto;
+    margin-bottom: 60px;
+    margin-top: 40px;
+}

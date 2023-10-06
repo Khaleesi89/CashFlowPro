@@ -3,6 +3,7 @@ import { Navbar } from '../../components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import { TabulatorFull as Tabulator } from "tabulator-tables";
 import "tabulator-tables/dist/css/tabulator.min.css";
+import './CategoriasABM.css';
 
 export const CategoriasABM = () => {
 
@@ -27,20 +28,19 @@ export const CategoriasABM = () => {
     if (tableRef.current && categorias.length > 0) {
       const table = new Tabulator(tableRef.current, {
         data: categorias,
-        autoResize: true,
+        height: "90%",
+       /*  layout: "fitColumns",
+        autoResize: true, */
+        groupBy: "tipo_categoria",
         placeholder: "No existen categorías para este usuario.",
-        layout: "fitColumns", 
         columns: [
-          { title: "Descripción", field: "descripcion", width: 200, hozAlign: "center" },
-          { title: "Tipo de categoría", field: "tipo_categoria", width: 100, hozAlign: "center" },
-          { title: "Acción", field: "", width: 100, hozAlign: "center",formatter: function (cell, formatterParams) {
-/*             console.log(cell)
-            console.log(cell.getRow().getData())
-              console.log(cell.getRow().getData().descripcion)*/ 
+          { title: "Descripción", field: "descripcion", width: 400,headerHozAlign: "center", hozAlign: "center",widthGrow: 1, minWidth: 250, responsive: 1 },
+          { title: "Tipo de categoría", field: "tipo_categoria",headerHozAlign: "center", width: 400, hozAlign: "center",widthGrow: 1, minWidth: 250, responsive: 1 },
+          { title: "Acción", field: "",headerHozAlign: "center", width: 400, hozAlign: "center", widthGrow: 1, minWidth: 250, responsive: 1,formatter: function (cell, formatterParams) {
             let id_categoria = cell.getRow().getData().id;
             let descripcion_categoria = cell.getRow().getData().descripcion;
             let tipo_categoria = cell.getRow().getData().tipo_categoria; 
-            let boton = `<a href="/categorias-editar/${id_categoria}/${descripcion_categoria}/${tipo_categoria}" class="btn btn-primary">Editar</a>`;
+            let boton = `<a href="/categorias-editar/${id_categoria}/${descripcion_categoria}/${tipo_categoria}" class="botonedit btn btn-primary">Editar</a>`;
             return boton;
         },},
         ],
@@ -75,11 +75,11 @@ export const CategoriasABM = () => {
   return (
     <>
       <Navbar />
-      <div className="tabla m-5 p-5">
+      <div className="categorias m-5">
         <div className="titulo-seccion">
           <h2>Listado de categorías</h2>
         </div>
-        <a href="/categorias-crear"> <button className='btn-dark'>Crear Categoría</button></a>
+        <a href="/categorias-crear" className='cateBoton'> <button className='btn-dark'>Alta Categoría</button></a>
         <div className="generar">
           <button id="download-csv" onClick={handleDownloadCSV}>CSV</button>
           <button id="download-xlsx" onClick={handleDownloadXLSX}>XLSX</button>

@@ -19,8 +19,10 @@
     display: grid;
     width: 50%;
     grid-template-columns: repeat(7, 1fr); /* Cambia el número de columnas según tus necesidades */
-    margin-bottom: 10rem;
-    margin-top: 5rem;
+    margin-top: 2rem;
+    
+    /* margin-bottom: 5rem;
+    margin-top: 5rem; */
 }
 
 .color-button{
@@ -32,3 +34,4 @@
 .color-button:hover{
     transform: scale(1.2);
 }
+

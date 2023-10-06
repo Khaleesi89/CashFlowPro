@@ -48,3 +48,8 @@ body{
   font-weight: bolder;
   font-family: 'parrafos';
 }
+
+.footer{
+  position: relative;
+  bottom: 60px;
+}
