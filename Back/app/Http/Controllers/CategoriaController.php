@@ -31,6 +31,7 @@ class CategoriaController extends Controller
             'tipo_categoria' => 'required',
         ]);
 
+
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 400);
         }
@@ -47,7 +48,35 @@ class CategoriaController extends Controller
     //debo pasar el id de la categoria, el id usuario, la descripicion y el tipo de categoria
 
 
+
     public function update(Request $request) {
+        // Valida que no exista esa categoría con ese usuario logueado
+        $validator = \Validator::make($request->all(), [
+            'descripcion' => [
+                'required',
+                function ($attribute, $value, $fail) use ($request) {
+                    $existeCategoria = Categoria::where('descripcion', $value)
+                        ->where('user_id', $request->user_id)
+                        ->where('tipo_categoria', $request->tipo_categoria)
+                        ->where('id', '!=', $request->id)
+                        ->exists();
+                    if ($existeCategoria) {
+                        $fail('Ya existe una categoría con este nombre, usuario y tipo de categoría para este usuario.');
+                    }
+                },
+            ],
+            'tipo_categoria' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+        // Si no hay errores de validación, busca la categoría y la modifica 
+        $categoria = Categoria::find($request->id);
+        $categoria->update($request->all());
+        return response()->json(['message' => 'Categoría modificada exitosamente.', 'categoria' => $categoria], 201);
+    }
+
+    /* public function update(Request $request) {
             //VALIDA QUE NO EXISTA ESA CATEGORIA CON ESE USUARIO LOGUEADO
             $validator = \Validator::make($request->all(), [
                 'descripcion' => [
@@ -77,7 +106,7 @@ class CategoriaController extends Controller
             return response()->json(['message' => 'Categoría modificada exitosamente.', 'categoria' => $categoria], 201);
     }
 
-
+ */
 
 
 

@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('presupuestos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->string('importe');
-            $table->string('entidad');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('ingreso_id')->constrained('ingresos')->nullable();
-            $table->foreignId('gasto_id')->constrained('gastos')->nullable();
-            $table->foreignId('ahorro_id')->constrained('ahorros')->nullable();
-            $table->foreignId('inversion_id')->constrained('inversiones')->nullable();
-            $table->foreignId('prestamo_id')->constrained('prestamos')->nullable();
+            $table->string('entidad')->nullable();//se uso unsigneBigInteger porque el foreingId no permite valores nulos
+            $table->unsignedBigInteger('user_id')->constrained('users');
+            $table->unsignedBigInteger('ingreso_id')->constrained('ingresos')->nullable();
+            $table->unsignedBigInteger('gasto_id')->constrained('gastos')->nullable();
+            $table->unsignedBigInteger('ahorro_id')->constrained('ahorros')->nullable();
+            $table->unsignedBigInteger('inversion_id')->constrained('inversiones')->nullable();
+            $table->unsignedBigInteger('prestamo_id')->constrained('prestamos')->nullable();
             $table->timestamps();
         });
     }

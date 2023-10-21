@@ -14,19 +14,19 @@ class PrestamosSeeder extends Seeder
     public function run(): void
     {
         Prestamo::create([
-            'user_id' => "1",
-            'deudor' => "Cristian",
+            'descripcion' => "Cristian",
             'importe' => "2433",
+            'user_id' => "1",
            ]);
         Prestamo::create([
-            'user_id' => "2",
-            'deudor' => "Cristian",
+            'descripcion' => "Cristian",
             'importe' => "12433",
+            'user_id' => "2",
         ]);
         Prestamo::create([
-            'user_id' => "1",
-            'deudor' => "Laura",
+            'descripcion' => "Laura",
             'importe' => "24343",
+            'user_id' => "1",
         ]);
     }
 }

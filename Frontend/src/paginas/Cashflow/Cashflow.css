@@ -1,0 +1,37 @@
+.tab-content{
+    background-color: var(--color-navbar);
+    width: 600px;
+    color: var(--color-menus);
+    margin: auto;
+    border-radius: 30px;
+}
+
+
+.tab-pane{
+    width: 500px;
+    height: 600px;
+    margin: auto;
+   
+ 
+    
+}
+
+/* .ahorroForm>.form-control{
+    margin-top: 10px;
+} */
+
+.form-select{
+    border-radius: 30px;
+}
+
+.ahorroTitle{
+   padding-top: 20px;
+}
+
+.titulo-seccion{
+    text-align: center;
+}
+
+.ahorroForm>.btn{
+    background-color: var(--color-titulo);
+}

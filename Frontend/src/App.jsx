@@ -15,6 +15,9 @@ import CategoriasABM from './paginas/Categorias/CategoriasABM';
 import NoEncontrada from './paginas/noEncontrada/noEncontrada';
 import PaginaConstruccion from './paginas/PaginaConstruccion/PaginaConstruccion';
 import ContactForm from './components/ContactForm/ContactForm';
+import { Cashflow } from './paginas/Cashflow/Cashflow';
+import Metas from './paginas/Metas/Metas';
+import VerPdf from './paginas/Presupuestos/VerPdf';
 
 
 // Defino defaults para las consultas axios y no repetirlas en todos los archivos.
@@ -55,6 +58,10 @@ function App() {
           <Route exact path='/categorias-editar/:idCategoria/:descripcion_categoria/:tipo_categoria' element={<EdicionCategoria/>}/>
           <Route exact path='/editar-perfil' element={<PaginaConstruccion/>}/>
           <Route exact path='/avisos' element={<PaginaConstruccion/>}/>
+          <Route exact path='/cashflow' element={<Cashflow/>}/>
+          <Route exact path='/metas' element={<Metas/>}/>
+          <Route exact path='/generate-pdf' element={<VerPdf/>}/>
+
           
         </Route>
       </Routes>

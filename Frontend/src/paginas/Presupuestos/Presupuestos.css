@@ -1,1 +1,11 @@
 
+.body-presupuestos{
+    display: flex;
+    flex-direction: column;
+    height: 49.69vh;
+}
+
+.body-presupuestos>.titulo-seccion>h2{
+    position: absolute;
+    left: 1085px;
+}

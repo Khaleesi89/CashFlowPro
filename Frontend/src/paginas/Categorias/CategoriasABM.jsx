@@ -26,7 +26,7 @@ export const CategoriasABM = () => {
 
   useEffect(() => {
     if (tableRef.current && categorias.length > 0) {
-      const table = new Tabulator(tableRef.current, {
+      tableRef.current.table = new Tabulator(tableRef.current, {
         data: categorias,
         height: "90%",
        /*  layout: "fitColumns",

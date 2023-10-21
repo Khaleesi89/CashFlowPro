@@ -13,9 +13,9 @@ class Prestamo extends Model
 
     protected $fillable = [
         'id',
-        'user_id',
-        'deudor',
+        'descripcion',
         'importe',
+        'user_id',
     ];
 
     protected $hidden = [

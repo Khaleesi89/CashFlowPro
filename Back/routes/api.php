@@ -5,6 +5,9 @@ use App\Http\Controllers\CategoriaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MetaController;
+use App\Http\Controllers\AhorroController;
+use App\Http\Controllers\PresupuestoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +42,18 @@ Route::post('/color', [UserController::class, 'setColor']);
 Route::get('/categorias/{id}', [CategoriaController::class, 'categoriasUsuario']);
 Route::post('/categoria-alta', [CategoriaController::class, 'create']);
 Route::post('/categoria-editar', [CategoriaController::class, 'update']);
+
+/* METAS */
+Route::get('/metas/{id}', [MetaController::class, 'metasUsuario']);
+Route::post('/metas-alta', [MetaController::class, 'create']);
+
+
+/* AHORROS */
+Route::post('/ahorro-alta', [AhorroController::class, 'create']);
+
+/* PRESUPUESTOS */
+Route::controller(PresupuestoController::class)->group(function () {
+    // Ruta para mostrar el presupuesto del mes actual
+    Route::get('/presupuestos/{user_id}/{fechaSeleccionada}', 'mostrarPresupuestos');   
+    
+});
