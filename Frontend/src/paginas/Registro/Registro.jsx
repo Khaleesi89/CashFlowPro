@@ -10,10 +10,10 @@ export const Registro = () => {
         <>
             
             <Navbar/>
-            <div className="formularioRegistro text-center">
-                <h2 className="mt-5">Formulario de Registro</h2>
+            <div className="formularioRegistro  text-center titulo-seccion">
+                <h2 className="m-5">Formulario de Registro</h2>
                 
-                <div className="register mx-auto col-6">
+                <div className="formRegister mx-auto col-3">
                     <Register/>
                 </div>
             </div>

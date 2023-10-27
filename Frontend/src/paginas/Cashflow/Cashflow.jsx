@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import './Cashflow.css'
 import Swal from 'sweetalert2';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 export const Cashflow = () => {
@@ -11,6 +12,9 @@ export const Cashflow = () => {
     //sacar las metas de cada usuario
     const [metas, setMetas] = useState([]);
     const [metaId, setMetaId] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+    const [importe, setImporte] = useState('');
+    const navigate = useNavigate();
 
     const listaMetas = async () => {
         let usuario = localStorage.getItem('auth_usuario');
@@ -51,9 +55,10 @@ export const Cashflow = () => {
                     title: 'Ahorro agregado',
                     timer: 1300,
                     });
-                    /* navigate('/categorias-lista') */
+                    
                 }
             });
+            navigate('/cashflow')
         } catch (error) {
           Swal.fire({
             icon: 'error',
@@ -95,15 +100,15 @@ export const Cashflow = () => {
                     <form className="ahorroForm" onSubmit={altaAhorrro}>
                         {/* Aquí coloca los campos y elementos de tu formulario para la Tab 1 */}
                         <label className='form-label'>Descripción</label>
-                        <input type="text" className='form-control' name="descripcion"  id="descripcion" />
+                        <input type="text" className='form-control' name="descripcion"  id="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
 
                         <label className='form-label'>Importe</label>
-                        <input type="text" className='form-control' name="importe" id="importe" />
+                        <input type="text" className='form-control' name="importe" id="importe" value={importe} onChange={(e) => setImporte(e.target.value)}/> 
 
                         <label className='form-label'>Metas disponibles</label>
                         <div className="">
                             <select className="form-select" aria-label="Floating label select example" onChange= {(e) => setMetaId(e.target.value)}>
-                                <option hidden selected>Selecciona una meta</option>
+                                <option hidden >Selecciona una meta</option>
                                 {metas.map((meta) => (
                                     <option key={meta.id} id={meta.id} name={meta.descripcion} value={meta.id}>{meta.descripcion} </option>))}
                             </select>
@@ -114,7 +119,7 @@ export const Cashflow = () => {
                 <div className="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
                 {/* Contenido del formulario para la Tab 2 */}
                     <form>
-                            {/* Aquí coloca los campos y elementos de tu formulario para la Tab 1 */}
+                            {/* Aquí coloca los campos y elementos de tu formulario para la Tab 2 */}
                             <label className='form-label'>Descripción</label>
                             <input type="text" className='form-control' name="descripcion"  id="descripcion" />
 
@@ -134,7 +139,7 @@ export const Cashflow = () => {
                 <div className="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
                 {/* Contenido del formulario para la Tab 3 */}
                     <form>
-                                {/* Aquí coloca los campos y elementos de tu formulario para la Tab 1 */}
+                                {/* Aquí coloca los campos y elementos de tu formulario para la Tab 3 */}
                                 <label className='form-label'>Descripción</label>
                                 <input type="text" className='form-control' name="descripcion"  id="descripcion" />
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import useForm from '../hooks/useForm'
+import './Register.css'
 
 export const Register = () => {
    
@@ -63,7 +64,7 @@ export const Register = () => {
     
     
     return (
-        <form className='w-100' onSubmit={handleSubmit}>
+        <form className='w-100 ' onSubmit={handleSubmit}>
             <label className='form-label'>Nombre</label>
             <input type="text" className='form-control' name="nombre"  id="nombre" value={form.nombre} /* onBlur={} */ onChange={handleChange}/>
             {errors.nombre && <div className="alert alert-danger p-1" role="alert">{errors.nombre}</div>}

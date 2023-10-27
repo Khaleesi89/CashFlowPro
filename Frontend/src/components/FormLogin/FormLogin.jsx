@@ -69,11 +69,11 @@ export const FormLogin = () =>{
                             <input type="password" id="password" className="form-control" value={password} onChange={(e) =>setPassword(e.target.value)} placeholder="Password" required/>
                         </div>
                         <button type="submit" className="btn btn-primary">Ingresar</button>
+                        <div className="linksRecuperacion m-5">
+                            <Link className="dropdown-item reg " to={('/register')}>Es nuevo? Regístrese</Link>
+                            <a className="dropdown-item pass" href="#">Olvidó password?</a>
+                        </div>
                     </form>
-                    <div className="linksRecuperacion">
-                        <Link className="dropdown-item reg" to={('/register')}>Es nuevo? Regístrese</Link>
-                        <a className="dropdown-item pass" href="#">Olvidó password?</a>
-                    </div>
             </div>
         </>
 

@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\AhorroController;
 use App\Http\Controllers\PresupuestoController;
+use App\Http\Controllers\MonedaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +59,6 @@ Route::controller(PresupuestoController::class)->group(function () {
     Route::get('/presupuestos/{user_id}/{fechaSeleccionada}', 'mostrarPresupuestos');   
     
 });
+
+/* MONEDA */
+Route::get('/conversion', [MonedaController::class, 'obtenerMonedas']);

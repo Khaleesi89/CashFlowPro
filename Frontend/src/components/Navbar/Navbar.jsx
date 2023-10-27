@@ -32,7 +32,7 @@ export const Navbar = () => {
 
 
   return (
-          <nav className="navbar navbar-expand-lg navbar-dark" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
+          <nav className="navbar navbar-expand-lg navbar-dark " style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
               <div className="container-fluid" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
                 <Link className="navbar-brand" to={'/'}>
                   <LogoTitle />
