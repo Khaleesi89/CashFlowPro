@@ -24,9 +24,6 @@ const Presupuestos = (() => {
   //importo la funcion para obtener el valor que se eligió en el componente de Moneda
   const { selectedCurrency } = useCurrency();
   //console.log(selectedCurrency)//trae el nombre de la moneda
-
-
-
   //traigo el valor desde el localstorage
 
   const valorMoneda = localStorage.getItem(selectedCurrency);
@@ -47,7 +44,7 @@ const Presupuestos = (() => {
       }
     }
     const { data, error } = await axios.get(url);
-    const {
+    var {
         ingresos,ahorro,inversiones,gastos,prestamos,totalIngresos,totalAhorros,totalInversiones,
         totalGastos,totalPrestamos,totalHistorial,
     } = data;
@@ -69,11 +66,11 @@ const Presupuestos = (() => {
     axios
       .get(`/api/presupuestos/${authUser.id}/${fechaSeleccionada}`)
       .then((response) => {
-        //console.log(response.data);
+        
         const {
           ingresos,ahorro,inversiones,gastos,prestamos,totalIngresos,totalAhorros,totalInversiones,
           totalGastos,totalPrestamos,totalHistorial,} = response.data;
-        setPresupuesto({ingresos,ahorro,inversiones,gastos,prestamos,});
+        setPresupuesto({ingresos,ahorro,inversiones,gastos,prestamos});
         setMovimientos({totalIngresos,totalAhorros,totalInversiones,totalGastos,totalPrestamos,});
         setTotales({totalIngresos,totalAhorros,totalInversiones,totalGastos,totalPrestamos,
           totalHistorial,});
@@ -92,7 +89,6 @@ const Presupuestos = (() => {
     { title: "Importe", field: "importe", hozAlign: "center",headerHozAlign: "center", formatter: function(cell, formatterParams, onRendered) {
       const value = cell.getRow().getData().importe;
       const totalMultiplicado = (value * valorMoneda).toFixed(2);
-      console.log(totalMultiplicado);
       return totalMultiplicado;
     } },
     { title: "Entidad", field: "entidad", formatter: function(cell, formatterParams, onRendered) {
@@ -110,31 +106,15 @@ const Presupuestos = (() => {
 
   useEffect(() => {
     if (tableRef.current && Object.entries(presupuesto).length > 0) {
-      const tableData = Object.entries(presupuesto).map(([key, value]) => ({
-        categoria: key,
-        ...value,
-      }));
-      //console.log(presupuesto)
-      /* if (tableRef.current && Object.entries(presupuesto).length > 0) {
-        const tableData = Object.entries(presupuesto).map(([key, value]) => ({
-          categoria: key,
-          descripcion: value.descripcion,  // Asegúrate de incluir la descripción
-          importe: value.importe * valorMoneda,  // Multiplica el importe por valorMoneda
-          entidad: value.entidad,
-        })); */
 
-      console.log(tableData);
 
       tableRef.current.table = new Tabulator(tableRef.current, {
-        data: tableData,
+        data: presupuesto.prestamos,
         layout: "fitColumns",
         columns: [
           { title: "Categoría", field: "categoria",hozAlign: "center",headerHozAlign: "center", headerFilter: true, visible : false , download : true }, 
           { title: "Descripción", field: "descripcion",hozAlign: "center",headerHozAlign: "center",download : true },
           { title: "Importe", field: "importe",hozAlign: "center",headerHozAlign: "center",download : true , /* formatter: function(cell, formatterParams, onRendered){
-            const numeroBase = cell.getRow().getData().importe;
-            console.log(cell.getRow().getData())
-            console.log(numeroBase)
           } */ },
           { title: "Entidad", field: "entidad",hozAlign: "center",headerHozAlign: "center", download : true, formatter: function(cell, formatterParams, onRendered) {
             // Obtén el valor de la celda
@@ -154,7 +134,6 @@ const Presupuestos = (() => {
 
 
   const handleDownloadPDF = () => {
-    console.log("estoy pdf");
     if (tableRef.current && tableRef.current.table) {
     const tableData = Object.entries(presupuesto).flatMap(([categoria, data]) =>
       data.map((item) => ({
@@ -164,27 +143,30 @@ const Presupuestos = (() => {
         entidad: item.entidad,
       }))
     );
+
+    let temp =  tableRef.current.table
     tableRef.current.table.setData(tableData);
     tableRef.current.table.download("pdf", "tabla.pdf", {
       orientation: "portrait",
       title: "Tabla de Presupuestos",
     });
+
+    tableRef.current.table.setData(presupuesto.prestamos);
   }
   };
   
 
   const handleDownloadExcel = () => {
-    console.log("estoy excel");
     if (tableRef.current && tableRef.current.table) {
-        const tableData = Object.entries(presupuesto).flatMap(([categoria, data]) =>
-          data.map((item) => ({
-            categoria: categoria,
-            descripcion: item.descripcion,
-            importe: (item.importe * valorMoneda).toFixed(2),
-            entidad: item.entidad,
-          }))
-        );
-    tableRef.current.table.setData(tableData);
+         const tableData = Object.entries(presupuesto).flatMap(([categoria, data]) =>
+           data.map((item) => ({
+             categoria: categoria,
+             descripcion: item.descripcion,
+             importe: (item.importe * valorMoneda).toFixed(2),
+             entidad: item.entidad,
+           }))
+         );
+     tableRef.current.table.setData(tableData);
     tableRef.current.table.download("xlsx", "tabla.xlsx", {
         sheetName: "Presupuestos",
       });
@@ -257,6 +239,7 @@ const Presupuestos = (() => {
                   {data[0] === "ahorro" && (
                     <h2 className="text-danger text-capitalize">{data[0]}</h2>
                   )}
+                  
                 
                  <div ref={tableRef}>
                     <ReactTabulator
