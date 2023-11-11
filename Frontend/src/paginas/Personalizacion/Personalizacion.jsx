@@ -14,7 +14,7 @@ export const Personalizacion = () => {
             let usuario = localStorage.getItem('auth_usuario');
             let usuarioObjeto = JSON.parse(usuario);
             let id = usuarioObjeto.id;
-            console.log(id);
+            //console.log(id);
             localStorage.setItem('color', color);
             //window.location.href = '/personalizacion';
             window.location.reload()

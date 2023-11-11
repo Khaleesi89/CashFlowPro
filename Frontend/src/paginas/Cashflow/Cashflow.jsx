@@ -56,9 +56,10 @@ export const Cashflow = () => {
                     timer: 1300,
                     });
                     
+                    
                 }
             });
-            navigate('/cashflow')
+            navigate('/home')
         } catch (error) {
           Swal.fire({
             icon: 'error',

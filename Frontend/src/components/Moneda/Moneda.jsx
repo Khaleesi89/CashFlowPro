@@ -1,15 +1,18 @@
-import React from 'react'
-import axios from 'axios'
-import { useCurrency } from '../CurrencyContext/CurrencyContext'
+import React from 'react';
+import axios from 'axios';
+import { useCurrency } from '../CurrencyContext/CurrencyContext';
 
 export const Moneda = () => {
 
   const {setCurrency } = useCurrency(); // Usa el contexto
+
+  
   const changeCurrency = (e) =>{
     //console.log(e)
     const valorElegido = e.target.value;
-    console.log(valorElegido)
+    //console.log(valorElegido)
     if(localStorage.getItem(valorElegido)){
+      //console.log('dentro del if')
       //console.log(localStorage.getItem(valorElegido))
       localStorage.setItem('valorSeleccionado', localStorage.getItem(valorElegido));//guardo en localstorage el valor de la moneda elegida
       setCurrency(valorElegido);
@@ -33,6 +36,7 @@ export const Moneda = () => {
           localStorage.setItem('PYG', data.data.quotes.ARSPYG);
           localStorage.setItem('UYU', data.data.quotes.ARSUYU);
           localStorage.setItem('VEF', data.data.quotes.ARSVEF); 
+          localStorage.setItem('valorSeleccionado', localStorage.getItem(valorElegido));//guardo en localstorage el valor de la moneda elegida
           setCurrency(valorElegido);
         })
         .catch(error=>{

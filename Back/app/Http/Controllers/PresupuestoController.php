@@ -101,4 +101,24 @@ class PresupuestoController extends Controller
             'totalHistorial' => $totalHistorial,
         ]);
     }
+
+    public function paraGrafio(Request $request, $id, $fechaSeleccionada){
+        //vamos a desmembrar la fecha para que quede mes y año segun la fecha seleccionada
+
+        //hacemos un like en donde busque todo con ese parametro en cada tipo de parametro
+        //como ingresos , ahorro, inversiones, gastos y prestamos
+
+        //luego haremos la suma total de todos esos parametros segun lo que venga en el back
+
+        //y retomaremos el con json pero creando una estructurar al la que permite el grafico
+
+        //el json debe tener
+        /* {
+            "id": "rust", //AQUI IRIA SI ES INGRESO, GASTO, ETC
+            "label": "rust",
+            "value": 307, //IRIA LA SUMATORIA DE TODO LO QUE TIENE CADA CATEGORIA
+            "color": "hsl(177, 70%, 50%)" //VOY A HACER UNA FUNCION RANDOW PAR QUE DECIDA A CADA
+            OPCION, UNA OPCION DE COLORES. LA MISMA TIENE QUE SER IRREPETIBLE 
+          }, */
+    }
 }

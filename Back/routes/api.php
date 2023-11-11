@@ -9,6 +9,8 @@ use App\Http\Controllers\MetaController;
 use App\Http\Controllers\AhorroController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\MonedaController;
+use App\Http\Controllers\IngresoController;
+
 
 
 /*
@@ -56,9 +58,14 @@ Route::post('/ahorro-alta', [AhorroController::class, 'create']);
 /* PRESUPUESTOS */
 Route::controller(PresupuestoController::class)->group(function () {
     // Ruta para mostrar el presupuesto del mes actual
+    //el problema de este fecha seleccionada que no trae lo del mes sino del dia actual
     Route::get('/presupuestos/{user_id}/{fechaSeleccionada}', 'mostrarPresupuestos');   
-    
+    Route::get('/graficos/{user_id}/{fechaSeleccionada}', 'paraGrafico');   
+
 });
 
 /* MONEDA */
 Route::get('/conversion', [MonedaController::class, 'obtenerMonedas']);
+
+/* INGRESOS */
+Route::post('/ingreso-alta', [IngresoController::class, 'store']);

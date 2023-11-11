@@ -14,7 +14,7 @@ export const CategoriasABM = () => {
     let usuario = localStorage.getItem('auth_usuario');
     let usuarioObjeto = JSON.parse(usuario);
     let id = usuarioObjeto.id;
-    console.log(id);
+    //console.log(id);
     const response = await fetch("http://localhost:8000/api/categorias/"+id);
     const data = await response.json();
     setCategorias(data);

@@ -20,8 +20,8 @@ export const FormLogin = () =>{
             usuario: e.target.usuario.value,
             password: e.target.password.value,
         }
-        console.log('que trae del login como dato');
-        console.log(data);
+        //console.log('que trae del login como dato');
+        //console.log(data);
         axios.get('/sanctum/csrf-cookie').then(response => {
             try {
                 const response = axios.post('api/login', data).then(res =>{
@@ -32,7 +32,7 @@ export const FormLogin = () =>{
                         localStorage.setItem('color', res.data.auth_usuario.color);
                         localStorage.setItem('nombre', res.data.auth_usuario.nombre);
                         //ALERTAS
-                        console.log(res);
+                        //console.log(res);
                         Swal.fire({
                         icon: 'success',
                         title: 'Acceso exitoso',

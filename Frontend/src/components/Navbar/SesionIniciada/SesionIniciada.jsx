@@ -19,7 +19,7 @@ export const SesionIniciada = ({nombre}) => {
           let usuario = localStorage.getItem('auth_usuario');
           let usuarioObjeto = JSON.parse(usuario);
           let id = usuarioObjeto.id;
-          console.log(id);
+          //console.log(id);
           let color = localStorage.getItem('color');
           if(actualizarColor(color,id)){
             //ELIMINACION DE TODO LO QUE HAY EN EL LOCALSTORAGE
@@ -47,7 +47,7 @@ export const SesionIniciada = ({nombre}) => {
 
       const actualizarColor = async (color,id) =>{
         const response = await axios.post('/api/color',{color: color, id:id});
-        console.log(response);
+        //console.log(response);
         const data = response;
         return data;
     } 

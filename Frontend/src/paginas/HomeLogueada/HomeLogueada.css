@@ -1,7 +1,9 @@
 
-.grafico>img{
-    width: 700px;
+.grafico{
+    width: 800px;
+    height: 700px;
     margin: 1.5rem;
+    background-color: black;
 
 }
 
@@ -33,5 +35,8 @@
     font-size: 1.7rem;
     font-weight: bold;
     margin-top: 100px;
+    width: 500px;
+    text-align: center;
+    margin-left: 40px;
 }
 

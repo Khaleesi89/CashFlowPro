@@ -19,15 +19,15 @@ class IngresoController extends Controller
         $request->validate([
             'descripcion' => 'required|string',
             'importe' => 'required|numeric',
-            'categoria_id' => 'required|integer',
+            /* 'categoria_id' => 'required', */
         ]);
 
         // Crea un nuevo ingreso
         $ingreso = Ingreso::create([
-            'descripcion' => $request->input('descripcion'),
-            'importe' => $request->input('importe'),
-            'categoria_id' => $request->input('categoria_id'),
-            'user_id' => auth()->user()->id, // Asigna el ID del usuario actual
+            'descripcion' => $request->descripcion,
+            'importe' => $request->importe,
+            'user_id' =>$request->user_id, // Asigna el ID del usuario actual
+            'categoria_id' => $request->categoria_id,
         ]);
 
         return response()->json(['message' => 'Ingreso creado con éxito', 'data' => $ingreso], 201);
