@@ -16,11 +16,21 @@ class CategoriasSeeder extends Seeder
 
          /* CATEGORIAS INGRESOS */
 
+         //usuario 1
+         
         Categoria::create([
             'descripcion' => "sueldo",
             'user_id' => "1",
             'tipo_categoria' => "ingreso",
         ]);
+
+        Categoria::create([
+            'descripcion' => "aguinaldo",
+            'user_id' => "1",
+            'tipo_categoria' => "ingreso",
+        ]);
+
+         //usuario 2
 
         Categoria::create([
             'descripcion' => "venta articulos",
@@ -34,11 +44,6 @@ class CategoriasSeeder extends Seeder
             'tipo_categoria' => "ingreso",
         ]);
 
-        Categoria::create([
-            'descripcion' => "aguinaldo",
-            'user_id' => "1",
-            'tipo_categoria' => "ingreso",
-        ]);
 
         Categoria::create([
             'descripcion' => "dividendo",
@@ -48,11 +53,8 @@ class CategoriasSeeder extends Seeder
 
            /* CATEGORIAS GASTOS */
 
-        Categoria::create([
-            'descripcion' => "patente",
-            'user_id' => "2",
-            'tipo_categoria' => "gasto",
-        ]);
+           
+        //usuario 1
 
         Categoria::create([
             'descripcion' => "obra social",
@@ -65,7 +67,6 @@ class CategoriasSeeder extends Seeder
             'user_id' => "1",
             'tipo_categoria' => "gasto",
         ]);
-
         Categoria::create([
             'descripcion' => "sushi",
             'user_id' => "1",
@@ -77,6 +78,21 @@ class CategoriasSeeder extends Seeder
             'user_id' => "1",
             'tipo_categoria' => "gasto",
         ]);
+
+
+        //usuario 2
+        Categoria::create([
+            'descripcion' => "patente",
+            'user_id' => "2",
+            'tipo_categoria' => "gasto",
+        ]);
+
+        Categoria::create([
+            'descripcion' => "obra social",
+            'user_id' => "2",
+            'tipo_categoria' => "gasto",
+        ]);
+
 
 
     }

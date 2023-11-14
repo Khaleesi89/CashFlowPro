@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Gasto;
+use App\Models\Ingreso;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Categoria extends Model
 {
@@ -22,4 +25,14 @@ class Categoria extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function ingresos():HasMany
+    {
+        return $this->hasMany(Ingreso::class, 'categoria_id');
+    }
+
+    public function gastos():HasMany
+    {
+        return $this->hasMany(Gasto::class, 'categoria_id');
+    }
 }

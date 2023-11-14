@@ -13,6 +13,8 @@ class IngresosSeeder extends Seeder
      */
     public function run(): void
     {
+
+        //usuario 1
         Ingreso::create([
             'descripcion' => "sueldo octubre",
             'importe' => "100000",
@@ -21,10 +23,21 @@ class IngresosSeeder extends Seeder
         ]);
 
         Ingreso::create([
-            'descripcion' => "sueldo",
+            'descripcion' => "aguinaldo junio",
+            'importe' => "178888",
+            'user_id' => "1",
+            'categoria_id' => "2",
+        ]);
+
+
+
+        //usuario 2
+
+        Ingreso::create([
+            'descripcion' => "dividendos Balanz",
             'importe' => "45000",
             'user_id' => "2",
-            'categoria_id' => "1",
+            'categoria_id' => "5",
         ]);
 
         Ingreso::create([
@@ -34,11 +47,5 @@ class IngresosSeeder extends Seeder
             'categoria_id' => "3",
         ]);
 
-        Ingreso::create([
-            'descripcion' => "aguinaldo junio",
-            'importe' => "178888",
-            'user_id' => "1",
-            'categoria_id' => "4",
-        ]);
     }
 }

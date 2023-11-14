@@ -13,19 +13,15 @@ class GastosSeeder extends Seeder
      */
     public function run(): void
     {
-        Gasto::create([
-            'descripcion' => "patente mensual",
-            'importe' => "234",
-            'fecha_vencimiento' => "20/10/2023",
-            'user_id' => "2",
-            'categoria_id' => "1",
-           ]);
+
+        //usuario 1
+
         Gasto::create([
             'descripcion' => "alquiler mes octubre",
             'importe' => "1000",
             'fecha_vencimiento' => "20/10/2023",
             'user_id' => "1",
-            'categoria_id' => "5",
+            'categoria_id' => "9",
            ]);
 
         Gasto::create([
@@ -33,7 +29,7 @@ class GastosSeeder extends Seeder
             'importe' => "432",
             'fecha_vencimiento' => "20/10/2023",
             'user_id' => "1",
-            'categoria_id' => "4",
+            'categoria_id' => "8",
            ]);
 
         Gasto::create([
@@ -41,7 +37,7 @@ class GastosSeeder extends Seeder
             'importe' => "876",
             'fecha_vencimiento' => "20/10/2023",
             'user_id' => "1",
-            'categoria_id' => "3",
+            'categoria_id' => "7",
            ]);
 
         Gasto::create([
@@ -49,8 +45,26 @@ class GastosSeeder extends Seeder
             'importe' => "988",
             'fecha_vencimiento' => "20/10/2023",
             'user_id' => "1",
-            'categoria_id' => "2",
+            'categoria_id' => "6",
            ]);
+
+
+        //usuario 2
+        Gasto::create([
+            'descripcion' => "patente mensual",
+            'importe' => "234",
+            'fecha_vencimiento' => "20/10/2023",
+            'user_id' => "2",
+            'categoria_id' => "10",
+           ]);
+
+        Gasto::create([
+        'descripcion' => "adicional obra social",
+        'importe' => "988",
+        'fecha_vencimiento' => "20/10/2023",
+        'user_id' => "2",
+        'categoria_id' => "11",
+        ]);
 
        
     }

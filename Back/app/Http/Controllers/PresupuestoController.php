@@ -89,7 +89,7 @@ class PresupuestoController extends Controller
 
         return response()->json([
             'ingresos' => $ingresosUsuario,
-            'ahorro' => $ahorroUsuario,
+            'ahorros' => $ahorroUsuario,
             'inversiones' => $inversionesUsuario,
             'gastos' => $gastosUsuario,
             'prestamos' => $prestamosUsuario,
@@ -102,8 +102,47 @@ class PresupuestoController extends Controller
         ]);
     }
 
-    public function paraGrafio(Request $request, $id, $fechaSeleccionada){
+    public function paraGrafico($idUsuario, $fechaSeleccionada){
         //vamos a desmembrar la fecha para que quede mes y año segun la fecha seleccionada
+        $fechaCarbon = Carbon::parse($fechaSeleccionada);
+        // Obtener el mes y el año en formato "Y-m"
+        //$mesYAnio = $fechaCarbon->format("Y-m");
+        //buscar los ingresos, gastos, inversion, prestamos y ahorros que sean de esa fecha (mes y año)
+        $ingresosMes = Ingreso::with('categorias')
+                        ->where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->whereYear('created_at', $fechaCarbon->year)
+                        ->whereMonth('created_at', $fechaCarbon->month)
+                        ->get();
+        $gastosMes = Gasto::with('categorias')
+                        ->where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->whereYear('created_at', $fechaCarbon->year)
+                        ->whereMonth('created_at', $fechaCarbon->month)
+                        ->get();
+        $inversionesMes = Inversion::where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->whereYear('created_at', $fechaCarbon->year)
+                        ->whereMonth('created_at', $fechaCarbon->month)
+                        ->get();
+        $prestamosMes = Prestamo::where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->whereYear('created_at', $fechaCarbon->year)
+                        ->whereMonth('created_at', $fechaCarbon->month)
+                        ->get();
+        $ahorrosMes = Ahorro::where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->whereYear('created_at', $fechaCarbon->year)
+                        ->whereMonth('created_at', $fechaCarbon->month)
+                        ->get();
+        return response()->json([
+                            'ingresos' => $ingresosMes,
+                            'ahorros' => $ahorrosMes,
+                            'inversiones' => $inversionesMes,
+                            'gastos' => $gastosMes,
+                            'prestamos' => $prestamosMes,
+                            ]);                
+
+        //CREAR EL JSON DE INGRESO
+        //CREAR EL JSON DE GASTO
+        //CREAR EL JSON DE INVERSION
+        //CREAR EL JSON DE PRESTAMO
+        //CREAR EL JSON DE AHORROS
 
         //hacemos un like en donde busque todo con ese parametro en cada tipo de parametro
         //como ingresos , ahorro, inversiones, gastos y prestamos
@@ -121,4 +160,46 @@ class PresupuestoController extends Controller
             OPCION, UNA OPCION DE COLORES. LA MISMA TIENE QUE SER IRREPETIBLE 
           }, */
     }
+
+
+
+    //GENERAL COLORES RANDOM PARA EL GRAFICO
+    function generarColorHSL() {
+        $hue = rand(0, 360);
+        $saturation = rand(0, 100);
+        $lightness = rand(0, 100);
+        
+        return "hsl($hue, $saturation%, $lightness%)";
+    }
+
+
+    //PARA COMBINAR JSON Y MANDAR AL FRONT SOLO UNO
+
+    
+
+        /* // Nombres de los archivos JSON a unir
+        $archivos = ['archivo1.json', 'archivo2.json', 'archivo3.json'];
+
+        // Array para almacenar los datos combinados
+        $datosCombinados = [];
+
+        // Iterar sobre cada archivo y combinar los datos
+        foreach ($archivos as $archivo) {
+            // Leer el contenido del archivo JSON
+            $contenido = file_get_contents($archivo);
+
+            // Decodificar el JSON y agregar los datos al array combinado
+            $datosCombinados = array_merge($datosCombinados, json_decode($contenido, true));
+        }
+
+        // Convertir el array combinado de nuevo a JSON
+        $jsonCombinado = json_encode($datosCombinados, JSON_PRETTY_PRINT);
+
+        // Guardar el JSON combinado en un nuevo archivo
+        file_put_contents('archivo_combinado.json', $jsonCombinado);
+
+        */
+
+
+    
 }

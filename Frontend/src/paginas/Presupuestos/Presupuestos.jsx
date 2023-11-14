@@ -69,16 +69,16 @@ const Presupuestos = (() => {
       return;
     }
     setUserId(authUser.id);
-    //console.log(authUser.id)
-    //console.log(fechaSeleccionada)
+    console.log(authUser.id)
+    console.log(fechaSeleccionada)
     axios
       .get(`/api/presupuestos/${authUser.id}/${fechaSeleccionada}`)
       .then((response) => {
         
         const {
-          ingresos,ahorro,inversiones,gastos,prestamos,totalIngresos,totalAhorros,totalInversiones,
+          ingresos,ahorros,inversiones,gastos,prestamos,totalIngresos,totalAhorros,totalInversiones,
           totalGastos,totalPrestamos,totalHistorial,} = response.data;
-        setPresupuesto({ingresos,ahorro,inversiones,gastos,prestamos});
+        setPresupuesto({ingresos,ahorros,inversiones,gastos,prestamos});
         setMovimientos({totalIngresos,totalAhorros,totalInversiones,totalGastos,totalPrestamos,});
         setTotales({totalIngresos,totalAhorros,totalInversiones,totalGastos,totalPrestamos,
           totalHistorial,});
@@ -250,7 +250,7 @@ const Presupuestos = (() => {
                   {data[0] === "prestamos" && (
                     <h2 className="text-danger text-capitalize">{data[0]}</h2>
                   )}
-                  {data[0] === "ahorro" && (
+                  {data[0] === "ahorros" && (
                     <h2 className="text-danger text-capitalize">{data[0]}</h2>
                   )}
                   
@@ -286,7 +286,9 @@ const Presupuestos = (() => {
                 <tbody>
                   {Object.entries(totales).map(([categoria, total], index) => (
                     <tr key={index}>
-                      <td style={categoria === "totalHistorial" ? { backgroundColor: '#593196',color:'white' } : {}}>{categoria}</td>
+                      <td style={categoria === "totalHistorial" ? { backgroundColor: '#593196', color: 'white' } : {}}>
+                          {categoria.includes('l') ? categoria.split('l').join('l ') : categoria}
+                      </td>
                       <td style={categoria === "totalHistorial" ? { backgroundColor: '#593196',color:'white'  } : {}}>
                       {total === "totalHistorial" ? "$ " + (total * valorMoneda).toFixed(2) : "$ " + (total * valorMoneda).toFixed(2) }
                       </td>

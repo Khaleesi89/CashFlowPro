@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Categoria;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Gasto extends Model
 {
@@ -25,4 +28,11 @@ class Gasto extends Model
         'created_at',
         'updated_at'
     ];
+
+
+    public function categorias():BelongsTo{
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+
+    }
+    
 }
