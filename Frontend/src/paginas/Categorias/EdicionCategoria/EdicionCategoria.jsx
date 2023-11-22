@@ -31,14 +31,14 @@ export const EdicionCategoria = () => {
             tipo_categoria: e.target.tipo_categoria.value,
             user_id: idUsuario,
           };
-      console.log(categoriaNueva);
+      //console.log(categoriaNueva);
       try {
         const response =  await axios.post('api/categoria-editar', categoriaNueva).then(res =>{
           
-            console.log(res)
+            //console.log(res)
             if (res.status === 200 || res.status === 201) {
                 //ALERTAS
-                console.log(res);
+                //console.log(res);
                 Swal.fire({
                 icon: 'success',
                 title: 'Categoría modificada',

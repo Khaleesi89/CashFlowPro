@@ -38,6 +38,10 @@ export const Cashflow = () => {
         let id = usuarioObjeto.id;
         let mes = e.target.mes.value;
         let anio = e.target.anio.value
+        // Agregar cero adelante si el mes es de 1 a 9
+        if (mes >= 1 && mes <= 9) {
+            mes = '0' + mes; // Agrega el cero adelante
+        }
         //console.log(mes)
         //console.log(anio)
         const nuevoAhorro = {
@@ -47,7 +51,7 @@ export const Cashflow = () => {
               importe: e.target.importe.value,
               periodoCorrespondiente: mes+"/"+anio
             };
-        //console.log(nuevoAhorro);
+        console.log(nuevoAhorro);
         try {
             const response =  await axios.post('api/ahorro-alta', nuevoAhorro).then(res =>{
                

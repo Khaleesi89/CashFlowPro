@@ -28,7 +28,7 @@ class IngresosSeeder extends Seeder
             'importe' => "178888",
             'user_id' => "1",
             'categoria_id' => "2",
-            'periodoCorrespondiente' => "6/2023"
+            'periodoCorrespondiente' => "06/2023"
         ]);
 
 
@@ -40,7 +40,7 @@ class IngresosSeeder extends Seeder
             'importe' => "45000",
             'user_id' => "2",
             'categoria_id' => "5",
-            'periodoCorrespondiente' => "6/2023"
+            'periodoCorrespondiente' => "06/2023"
         ]);
 
         Ingreso::create([
@@ -48,7 +48,7 @@ class IngresosSeeder extends Seeder
             'importe' => "90000",
             'user_id' => "2",
             'categoria_id' => "3",
-            'periodoCorrespondiente' => "9/2023"
+            'periodoCorrespondiente' => "09/2023"
         ]);
 
     }

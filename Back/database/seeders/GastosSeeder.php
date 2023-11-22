@@ -40,7 +40,7 @@ class GastosSeeder extends Seeder
             'fecha_vencimiento' => "20/10/2023",
             'user_id' => "1",
             'categoria_id' => "7",
-            'periodoCorrespondiente' => "9/2023"
+            'periodoCorrespondiente' => "09/2023"
            ]);
 
         Gasto::create([

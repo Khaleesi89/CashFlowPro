@@ -37,6 +37,7 @@ export const Moneda = () => {
           localStorage.setItem('UYU', data.data.quotes.ARSUYU);
           localStorage.setItem('VEF', data.data.quotes.ARSVEF); 
           localStorage.setItem('valorSeleccionado', localStorage.getItem(valorElegido));//guardo en localstorage el valor de la moneda elegida
+          console.log(valorElegido);
           setCurrency(valorElegido);
         })
         .catch(error=>{

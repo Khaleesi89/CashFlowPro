@@ -10,7 +10,7 @@ import { useCurrency } from "../../components/CurrencyContext/CurrencyContext";
 const Presupuestos = (() => {
   const [userId, setUserId] = useState(null);
   const [fechaSeleccionada, setFechaSeleccionada] = useState(
-    new Date().toJSON().slice(0, 10)
+    new Date().toJSON().slice(0, 10)//obtine la fecha actual en formato de cadena de texto en formato JSON y utiliza solo los 10 caracteres primeros YYYY-MM-DD (Año-Mes-Día)
   );
   const [presupuesto, setPresupuesto] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,11 +32,13 @@ const Presupuestos = (() => {
   //console.log(valorMoneda)
 
   //FUNCION PARA TRAER LOS ASIENTOS DEL USUARIO PARA FILTRADO DE FECHAS
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let url = `/api/presupuestos/${encodeURIComponent(
+    let url = `/api/presupuestos/${encodeURIComponent(//se utiliza para escapar cualquier carácter especial que pueda causar problemas en una URL, como espacios o caracteres no permitidos
       userId
     )}/${encodeURIComponent(fechaSeleccionada)}/`;
+
     if (fechaDesde !== "") {
       url += `?fechaDesde=${encodeURI(fechaDesde)}`;
     }
@@ -47,18 +49,22 @@ const Presupuestos = (() => {
         url += `?fechaHasta=${encodeURI(fechaHasta)}`;
       }
     }
-    console.log(url);
+    // console.log(url);
+    // console.log(fechaSeleccionada);//la fecha de hoy
+    // console.log(fechaDesde);
+    // console.log(fechaHasta);
     const { data, error } = await axios.get(url);
     const {
-        ingresos,ahorro,inversiones,gastos,prestamos,totalIngresos,totalAhorros,totalInversiones,
+        ingresos,ahorros,inversiones,gastos,prestamos,totalIngresos,totalAhorros,totalInversiones,
         totalGastos,totalPrestamos,totalHistorial,
     } = data;
-    setPresupuesto({ingresos,ahorro,inversiones,gastos,prestamos, });
+    
+    setPresupuesto({ingresos,ahorros,inversiones,gastos,prestamos, });
     setMovimientos({totalIngresos,totalAhorros,totalInversiones,totalGastos,totalPrestamos,});
     setTotales({totalIngresos,totalAhorros,totalInversiones,totalGastos,totalPrestamos,
         totalHistorial,});
-    //console.log(data);
-  };
+    console.log(data);
+  }; 
 
   //TRAE LA INFORMACION DEL USUARIO
   useEffect(() => {
@@ -69,8 +75,8 @@ const Presupuestos = (() => {
       return;
     }
     setUserId(authUser.id);
-    console.log(authUser.id)
-    console.log(fechaSeleccionada)
+    //console.log(authUser.id)
+    //console.log(fechaSeleccionada)
     axios
       .get(`/api/presupuestos/${authUser.id}/${fechaSeleccionada}`)
       .then((response) => {
@@ -143,7 +149,7 @@ const Presupuestos = (() => {
     }
   }, [presupuesto]);
 
-//console.log(presupuesto)
+console.log(presupuesto)
 
   //FUNCION PARA DESCARGAR EL PDF
   const handleDownloadPDF = () => {
@@ -204,8 +210,8 @@ const Presupuestos = (() => {
             <label>Fecha Desde</label>
             <input
               className="form-control"
-              id="fecha_desde"
-              name="fecha_desde"
+              id="fechaDesde"
+              name="fechaDesde"
               type="date"
               value={fechaDesde}
               onChange={(e) => setFechaDesde(e.currentTarget.value)}
@@ -215,8 +221,8 @@ const Presupuestos = (() => {
             <label>Fecha Hasta</label>
             <input
               className="form-control"
-              id="fecha_hasta"
-              name="fecha_hasta"
+              id="fechaHasta"
+              name="fechaHasta"
               type="date"
               value={fechaHasta}
               onChange={(e) => setFechaHasta(e.currentTarget.value)}
