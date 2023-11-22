@@ -32,21 +32,26 @@ export const Cashflow = () => {
   
     const altaAhorrro = async (e) => {
         e.preventDefault();
-        console.log(e);
+        //console.log(e);
         let usuario = localStorage.getItem('auth_usuario');
         let usuarioObjeto = JSON.parse(usuario);
         let id = usuarioObjeto.id;
+        let mes = e.target.mes.value;
+        let anio = e.target.anio.value
+        //console.log(mes)
+        //console.log(anio)
         const nuevoAhorro = {
               descripcion: e.target.descripcion.value,
               user_id: id,
               meta_id: metaId,
-              importe: e.target.importe.value
+              importe: e.target.importe.value,
+              periodoCorrespondiente: mes+"/"+anio
             };
-        console.log(nuevoAhorro);
+        //console.log(nuevoAhorro);
         try {
             const response =  await axios.post('api/ahorro-alta', nuevoAhorro).then(res =>{
                
-                console.log(res)
+                //console.log(res)
                 if (res.status === 200 || res.status === 201) {
                     //ALERTAS
                     console.log(res);
@@ -71,7 +76,26 @@ export const Cashflow = () => {
         }; 
     }
 
-    //hacer que se rendericen las tabs
+    //que se realicen los select de meses y anios en el formulario
+
+    const fechaActual = new Date();
+            const anioActual = fechaActual.getFullYear();
+            const cincoAniosDespues = anioActual + 5;
+            const meses = Array.from({ length: 12 }, (_, i) => i + 1);
+            const mesesOptions = meses.map((mes) => (
+                <option key={mes} value={mes}>
+                  {mes}
+                </option>
+              ));
+            const aniosOptions = [];
+            for (let i = anioActual; i <= cincoAniosDespues; i++) {
+                aniosOptions.push(
+                    <option key={i} value={i}>
+                    {i}
+                    </option>
+                );
+            }
+    
 
     
     return (
@@ -114,6 +138,13 @@ export const Cashflow = () => {
                                     <option key={meta.id} id={meta.id} name={meta.descripcion} value={meta.id}>{meta.descripcion} </option>))}
                             </select>
                         </div>
+                        <label className='form-label'>Período correspondiente</label>
+                        <select id="mes" className="form-select">
+                            ${mesesOptions}
+                            </select>
+                            <select id="anio" className="form-select">
+                            ${aniosOptions}
+                            </select>
                         <button className="btn btn-dark" type="submit">Crear Ahorro</button>
                     </form>
                 </div>
@@ -121,40 +152,13 @@ export const Cashflow = () => {
                 {/* Contenido del formulario para la Tab 2 */}
                     <form>
                             {/* Aquí coloca los campos y elementos de tu formulario para la Tab 2 */}
-                            <label className='form-label'>Descripción</label>
-                            <input type="text" className='form-control' name="descripcion"  id="descripcion" />
-
-                            <label className='form-label'>Importe</label>
-                            <input type="text" className='form-control' name="importe" id="importe" />
-
-                            <div className="form-floating">
-                                <select className="form-select" id="floatingSelect" aria-label="Floating label select example" >
-                                    <option value="Mis metas">Mis metas</option>
-                                    {/* {metas.map((meta) => (
-                                        <option key={meta.id} value={meta.descripcion}>{meta.descripcion}</option>))} */}
-                                </select>
-                                <label htmlFor="floatingSelect">Metas disponibles</label>
-                            </div>
+                            
                     </form>
                 </div>
                 <div className="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
                 {/* Contenido del formulario para la Tab 3 */}
                     <form>
-                                {/* Aquí coloca los campos y elementos de tu formulario para la Tab 3 */}
-                                <label className='form-label'>Descripción</label>
-                                <input type="text" className='form-control' name="descripcion"  id="descripcion" />
-
-                                <label className='form-label'>Importe</label>
-                                <input type="text" className='form-control' name="importe" id="importe" />
-
-                                <div className="form-floating">
-                                    <select className="form-select" id="floatingSelect" aria-label="Floating label select example" >
-                                        <option value="Mis metas">Mis metas</option>
-                                        {/* {metas.map((meta) => (
-                                            <option key={meta.id} value={meta.descripcion}>{meta.descripcion}</option>))} */}
-                                    </select>
-                                    <label htmlFor="floatingSelect">Metas disponibles</label>
-                                </div>
+                                
                     </form>
                 </div>
             </div>

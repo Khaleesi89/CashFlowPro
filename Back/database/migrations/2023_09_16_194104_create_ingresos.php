@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion')->nullable();;
+            $table->string('descripcion')->nullable();
             $table->string('importe');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('categoria_id')->constrained('categorias');
+            $table->string('periodoCorrespondiente');
             $table->timestamps();
         });
     }

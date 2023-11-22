@@ -19,6 +19,7 @@ class Ingreso extends Model
         'importe',
         'user_id',
         'categoria_id',
+        'periodoCorrespondiente'
     ];
 
     protected $hidden = [

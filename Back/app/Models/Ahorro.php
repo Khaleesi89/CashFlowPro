@@ -17,6 +17,7 @@ class Ahorro extends Model
         'user_id',
         'meta_id',
         'importe',
+        'periodoCorrespondiente'
     ];
 
     protected $hidden = [

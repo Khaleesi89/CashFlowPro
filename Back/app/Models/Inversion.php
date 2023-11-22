@@ -17,6 +17,7 @@ class Inversion extends Model
         'importe',
         'entidad',
         'user_id',
+        'periodoCorrespondiente'
     ];
 
     protected $hidden = [

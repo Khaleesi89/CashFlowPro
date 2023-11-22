@@ -88,6 +88,7 @@ export const EdicionCategoria = () => {
                 name="tipo_categoria"
                 id="ingreso"
                 value="ingreso"
+                disabled= {true}
                 checked={tipoCategoria === 'ingreso'}
                 onChange={(e) => setTipoCategoria(e.target.value)}
               />
@@ -100,6 +101,7 @@ export const EdicionCategoria = () => {
                 name="tipo_categoria"
                 id="gasto"
                 value="gasto"
+                disabled= {true}
                 checked={tipoCategoria === 'gasto'}
                 onChange={(e) => setTipoCategoria(e.target.value)}
               />

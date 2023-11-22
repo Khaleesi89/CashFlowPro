@@ -55,7 +55,7 @@ export const SesionIniciada = ({nombre}) => {
      
     return(
         <>
-            
+              <ul>
                 <li className="nav-item dropdown itemEliminar">
                     <a className="nav-link dropdown-toggle sesionIni"  style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{nombre.toUpperCase()}</a>
                     <ul className="dropdown-menu desplegableMenu"  style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
@@ -63,6 +63,7 @@ export const SesionIniciada = ({nombre}) => {
                         <li><a className="dropdown-item"  style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }} onClick={logout} href="#">Cerrar sesión</a></li>
                     </ul>
                 </li>
+              </ul>
             
         </>
         

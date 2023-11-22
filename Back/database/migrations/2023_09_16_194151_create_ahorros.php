@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('meta_id')->constrained('metas');
             $table->string('importe');
+            $table->string('periodoCorrespondiente')->nullable();;
             $table->timestamps();
         });
     }

@@ -1,37 +1,26 @@
-.tab-content{
-    background-color: var(--color-navbar);
-    width: 600px;
-    color: var(--color-menus);
+
+/* Estilos para la tabla */
+
+  
+  .modern-table {
+    width: 60%;
     margin: auto;
-    border-radius: 30px;
-}
-
-
-.tab-pane{
-    width: 500px;
-    height: 600px;
-    margin: auto;
-   
- 
-    
-}
-
-/* .ahorroForm>.form-control{
-    margin-top: 10px;
-} */
-
-.form-select{
-    border-radius: 30px;
-}
-
-.ahorroTitle{
-   padding-top: 20px;
-}
-
-.titulo-seccion{
-    text-align: center;
-}
-
-.ahorroForm>.btn{
-    background-color: var(--color-titulo);
-}
+    margin-top: 30px;
+  }
+  
+  .modern-table th,
+  .modern-table td {
+     padding: 12px 15px;
+     text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .progress{
+    height: 100px;
+    line-height: 350px;
+    font-size: 60px;
+  }
+  
+  .progress-bar>p{
+    color:#13b955;
+  }

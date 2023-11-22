@@ -19,6 +19,8 @@ class IngresoController extends Controller
         $request->validate([
             'descripcion' => 'required|string',
             'importe' => 'required|numeric',
+            'periodoCorrespondiente' => 'required|string|regex:/^\d{1,2}\/\d{4}$/',
+            
             /* 'categoria_id' => 'required', */
         ]);
 
@@ -28,6 +30,7 @@ class IngresoController extends Controller
             'importe' => $request->importe,
             'user_id' =>$request->user_id, // Asigna el ID del usuario actual
             'categoria_id' => $request->categoria_id,
+            'periodoCorrespondiente' =>$request->periodoCorrespondiente
         ]);
 
         return response()->json(['message' => 'Ingreso creado con éxito', 'data' => $ingreso], 201);

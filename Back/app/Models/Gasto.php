@@ -21,6 +21,7 @@ class Gasto extends Model
         'fecha_vencimiento',
         'user_id',
         'categoria_id',
+        'periodoCorrespondiente'
         
     ];
 

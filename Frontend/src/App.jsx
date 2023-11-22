@@ -16,7 +16,7 @@ import NoEncontrada from './paginas/noEncontrada/noEncontrada';
 import PaginaConstruccion from './paginas/PaginaConstruccion/PaginaConstruccion';
 import ContactForm from './components/ContactForm/ContactForm';
 import { Cashflow } from './paginas/Cashflow/Cashflow';
-import Metas from './paginas/Metas/Metas';
+import MetasSeguimiento from './paginas/Metas/MetasSeguimiento';
 import { CurrencyProvider } from './components/CurrencyContext/CurrencyContext';
 
 // Defino defaults para las consultas axios y no repetirlas en todos los archivos.
@@ -59,7 +59,7 @@ function App() {
             <Route exact path='/editar-perfil' element={<PaginaConstruccion/>}/>
             <Route exact path='/avisos' element={<PaginaConstruccion/>}/>
             <Route exact path='/cashflow' element={<Cashflow/>}/>
-            <Route exact path='/metas' element={<Metas/>}/>
+            <Route exact path='/metas' element={<MetasSeguimiento/>}/>
 
             
           </Route>

@@ -52,8 +52,12 @@ Route::get('/metas/{id}', [MetaController::class, 'metasUsuario']);
 Route::post('/metas-alta', [MetaController::class, 'create']);
 
 
+
 /* AHORROS */
 Route::post('/ahorro-alta', [AhorroController::class, 'create']);
+Route::get('/ahorrovsmetas/{id}', [AhorroController::class, 'progresoMetas']);
+
+
 
 /* PRESUPUESTOS */
 Route::controller(PresupuestoController::class)->group(function () {

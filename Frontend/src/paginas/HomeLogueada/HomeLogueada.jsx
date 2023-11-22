@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MyResponsivePie } from '../../components/ResponsivePie/ResponsivePie';
+import { renderToString } from 'react-dom/server';
+
 
 export const HomeLogueada = () => {
     const [categorias, setCategorias] = useState([]);
@@ -83,14 +85,48 @@ export const HomeLogueada = () => {
             const categoriasIngresoUsuario = categoriasTotalesUsuario.filter(categoria => categoria.tipo_categoria === "ingreso");
             //console.log(categoriasIngresoUsuario);
             setCategorias(categoriasIngresoUsuario);
+            const fechaActual = new Date();
+            const anioActual = fechaActual.getFullYear();
+            const cincoAniosDespues = anioActual + 5;
+            const meses = Array.from({ length: 12 }, (_, i) => i + 1);
+            const mesesOptions = meses.map((mes) => (
+                <option key={mes} value={mes}>
+                  {mes}
+                </option>
+              ));
+            const aniosOptions = [];
+            for (let i = anioActual; i <= cincoAniosDespues; i++) {
+                aniosOptions.push(
+                    <option key={i} value={i}>
+                    {i}
+                    </option>
+                );
+            }
+            //console.log(mesesOptions);
+            //console.log(aniosOptions);
+            //se usa una funcion de router dom server para transformar lo de jsx a html para el modal
+            const mesesOptionsString = renderToString(mesesOptions);
+            const aniosOptionsString = renderToString(aniosOptions);
+
 
             Swal.fire({
                 title: 'Registre un Ingreso',
                 html: `
-                    <input type="text" id="descripcion" class="swal2-input" placeholder="Descripción">
-                    <input type="number" id="importe" class="swal2-input" placeholder="Importe">
-                    <select id="categoria" class="swal2-input">
+                    <input type="text" id="descripcion" className="swal2-input" placeholder="Descripción">
+                    <input type="number" id="importe" className="swal2-input" placeholder="Importe">
+                    <br>
+                    <label htmlFor="categoria" className="form-label">Categoría</label>
+                    <select id="categoria" className="swal2-input">
                         ${categoriasIngresoUsuario.map(categoria => `<option value="${categoria.id}">${categoria.descripcion}</option>`).join('')}
+                    </select>
+                    <br>
+                    <label htmlFor="MesCorrespondiente" className="form-label">Mes al que corresponde el ingreso</label>
+                    <br>
+                    <select id="mes" className="swal2-input">
+                    ${mesesOptionsString}
+                    </select>
+                    <select id="anio" className="swal2-input">
+                    ${aniosOptionsString}
                     </select>
                 `,
                 showCancelButton: true,
@@ -103,8 +139,9 @@ export const HomeLogueada = () => {
                         importe: document.getElementById('importe').value,
                         user_id: id,
                         categoria_id: document.getElementById('categoria').value,
+                        periodoCorrespondiente: document.getElementById('mes').value+'/'+document.getElementById('anio').value
                     };
-                    console.log(infoIngresoAlta)
+                    //console.log(infoIngresoAlta)
                     axios.post('api/ingreso-alta', infoIngresoAlta)
                         .then(res => {
                             console.log(res);

@@ -18,6 +18,7 @@ class InversionesSeeder extends Seeder
             'importe' => "14000",
             'entidad' => "Banco Galicia",
             'user_id' => "2",
+            'periodoCorrespondiente' => "11/2023"
            ]);
 
         Inversion::create([
@@ -25,6 +26,7 @@ class InversionesSeeder extends Seeder
             'importe' => "12000",
             'entidad' => "Balanz",
             'user_id' => "2",
+            'periodoCorrespondiente' => "11/2023"
            ]);
 
         Inversion::create([
@@ -32,6 +34,7 @@ class InversionesSeeder extends Seeder
             'importe' => "4300",
             'entidad' => "Banco Galicia",
             'user_id' => "1",
+            'periodoCorrespondiente' => "10/2023"
            ]);
     }
 }

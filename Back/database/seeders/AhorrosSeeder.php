@@ -18,6 +18,7 @@ class AhorrosSeeder extends Seeder
             'user_id' => "1",
             'meta_id' => "1",
             'importe' => "23000",
+            'periodoCorrespondiente' => "11/2023"
         ]);
 
         Ahorro::create([
@@ -25,6 +26,7 @@ class AhorrosSeeder extends Seeder
             'user_id' => "2",
             'meta_id' => "2",
             'importe' => "5000",
+            'periodoCorrespondiente' => "11/2023"
         ]);
 
         Ahorro::create([
@@ -32,6 +34,7 @@ class AhorrosSeeder extends Seeder
             'user_id' => "1",
             'meta_id' => "3",
             'importe' => "20000",
+            'periodoCorrespondiente' => "10/2023"
         ]);
 
     }

@@ -16,6 +16,7 @@ class Prestamo extends Model
         'descripcion',
         'importe',
         'user_id',
+        'periodoCorrespondiente'
     ];
 
     protected $hidden = [
