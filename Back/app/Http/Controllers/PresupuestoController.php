@@ -98,6 +98,36 @@ class PresupuestoController extends Controller
         ]);
     }
 
+    public function paraGrafico(Request $request, $idUsuario){
+        
+        //fecha para buscar
+        $actual = $request->periodo;
+        //buscar los ingresos, gastos, inversion, prestamos y ahorros que sean de esa fecha (mes y año)
+        $ingresosMes = Ingreso::with('categorias')
+                        ->where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->where('periodoCorrespondiente', $actual)
+                        ->get();
+        $gastosMes = Gasto::with('categorias')
+                        ->where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->where('periodoCorrespondiente', $actual)
+                        ->get();
+        $inversionesMes = Inversion::where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->where('periodoCorrespondiente', $actual)
+                        ->get();
+        $prestamosMes = Prestamo::where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->where('periodoCorrespondiente', $actual)
+                        ->get();
+        $ahorrosMes = Ahorro::where('user_id', $idUsuario) // Reemplaza $usuarioId con el ID del usuario deseado
+                        ->where('periodoCorrespondiente', $actual)
+                        ->get();
+        return response()->json([
+                            'ingresos' => $ingresosMes,
+                            'ahorros' => $ahorrosMes,
+                            'inversiones' => $inversionesMes,
+                            'gastos' => $gastosMes,
+                            'prestamos' => $prestamosMes,
+                            ]);                
+    }
 
 
     /* // Mostrar el presupuesto del mes actual                ORIGINAL
@@ -190,7 +220,7 @@ class PresupuestoController extends Controller
         ]);
     } */
 
-    public function paraGrafico($idUsuario, $fechaSeleccionada){
+    /* public function paraGrafico($idUsuario, $fechaSeleccionada){//ORIGINAL
         //vamos a desmembrar la fecha para que quede mes y año segun la fecha seleccionada
         $fechaCarbon = Carbon::parse($fechaSeleccionada);
         // Obtener el mes y el año en formato "Y-m"
@@ -224,69 +254,12 @@ class PresupuestoController extends Controller
                             'inversiones' => $inversionesMes,
                             'gastos' => $gastosMes,
                             'prestamos' => $prestamosMes,
-                            ]);                
+                            ]);                 */
 
         //CREAR EL JSON DE INGRESO
-        //CREAR EL JSON DE GASTO
-        //CREAR EL JSON DE INVERSION
-        //CREAR EL JSON DE PRESTAMO
-        //CREAR EL JSON DE AHORROS
-
-        //hacemos un like en donde busque todo con ese parametro en cada tipo de parametro
-        //como ingresos , ahorro, inversiones, gastos y prestamos
-
-        //luego haremos la suma total de todos esos parametros segun lo que venga en el back
-
-        //y retomaremos el con json pero creando una estructurar al la que permite el grafico
-
-        //el json debe tener
-        /* {
-            "id": "rust", //AQUI IRIA SI ES INGRESO, GASTO, ETC
-            "label": "rust",
-            "value": 307, //IRIA LA SUMATORIA DE TODO LO QUE TIENE CADA CATEGORIA
-            "color": "hsl(177, 70%, 50%)" //VOY A HACER UNA FUNCION RANDOW PAR QUE DECIDA A CADA
-            OPCION, UNA OPCION DE COLORES. LA MISMA TIENE QUE SER IRREPETIBLE 
-          }, */
-    }
-
-
-
-    //GENERAL COLORES RANDOM PARA EL GRAFICO
-    function generarColorHSL() {
-        $hue = rand(0, 360);
-        $saturation = rand(0, 100);
-        $lightness = rand(0, 100);
         
-        return "hsl($hue, $saturation%, $lightness%)";
-    }
-
-
-    //PARA COMBINAR JSON Y MANDAR AL FRONT SOLO UNO
-
+       
     
-
-        /* // Nombres de los archivos JSON a unir
-        $archivos = ['archivo1.json', 'archivo2.json', 'archivo3.json'];
-
-        // Array para almacenar los datos combinados
-        $datosCombinados = [];
-
-        // Iterar sobre cada archivo y combinar los datos
-        foreach ($archivos as $archivo) {
-            // Leer el contenido del archivo JSON
-            $contenido = file_get_contents($archivo);
-
-            // Decodificar el JSON y agregar los datos al array combinado
-            $datosCombinados = array_merge($datosCombinados, json_decode($contenido, true));
-        }
-
-        // Convertir el array combinado de nuevo a JSON
-        $jsonCombinado = json_encode($datosCombinados, JSON_PRETTY_PRINT);
-
-        // Guardar el JSON combinado en un nuevo archivo
-        file_put_contents('archivo_combinado.json', $jsonCombinado);
-
-        */
 
 
     

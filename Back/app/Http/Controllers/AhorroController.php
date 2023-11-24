@@ -58,4 +58,15 @@ class AhorroController extends Controller
         }
         return response()->json($ahorrosPaJson);
     }
+
+    public function ahorroPorMeta($idMeta){
+        $ahorros = Ahorro::where('meta_id', $idMeta)->get();
+        $importeTotal = 0;
+        foreach ($ahorros as $ahorro) {
+            $importeMeta = $ahorro->importe;
+            $importeTotal += $importeMeta;
+        }
+        return response()->json($importeTotal);
+    }
+
 }

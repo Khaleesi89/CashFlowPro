@@ -149,7 +149,7 @@ const Presupuestos = (() => {
     }
   }, [presupuesto]);
 
-console.log(presupuesto)
+//console.log(presupuesto)
 
   //FUNCION PARA DESCARGAR EL PDF
   const handleDownloadPDF = () => {
@@ -165,9 +165,9 @@ console.log(presupuesto)
 
     let temp =  tableRef.current.table
     tableRef.current.table.setData(tableData);
-    tableRef.current.table.download("pdf", "tabla.pdf", {
+    tableRef.current.table.download("pdf", "movimientos.pdf", {
       orientation: "portrait",
-      title: "Tabla de Presupuestos",
+      title: "Movimientos en las finanzas personales",
     });
 
     tableRef.current.table.setData(presupuesto.prestamos);
@@ -187,8 +187,8 @@ console.log(presupuesto)
            }))
          );
      tableRef.current.table.setData(tableData);
-    tableRef.current.table.download("xlsx", "tabla.xlsx", {
-        sheetName: "Presupuestos",
+    tableRef.current.table.download("xlsx", "movimientos.xlsx", {
+        sheetName: "Movimientos en las finanzas personales",
       });
     }
   };

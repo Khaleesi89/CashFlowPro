@@ -42,43 +42,66 @@ export const Cashflow = () => {
         if (mes >= 1 && mes <= 9) {
             mes = '0' + mes; // Agrega el cero adelante
         }
-        //console.log(mes)
-        //console.log(anio)
-        const nuevoAhorro = {
-              descripcion: e.target.descripcion.value,
-              user_id: id,
-              meta_id: metaId,
-              importe: e.target.importe.value,
-              periodoCorrespondiente: mes+"/"+anio
-            };
-        console.log(nuevoAhorro);
-        try {
-            const response =  await axios.post('api/ahorro-alta', nuevoAhorro).then(res =>{
-               
-                //console.log(res)
-                if (res.status === 200 || res.status === 201) {
-                    //ALERTAS
-                    console.log(res);
+        //traigo la meta de la referencia
+        await axios.get('api/meta/'+metaId).then(res =>{
+            let importeMeta = res.data[0].importe;
+            //console.log(Number(importeMeta));
+            //traigo todo lo ahorrado por esa meta
+            axios.get('api/ahorroPorMeta/'+metaId).then(response =>{
+                let importeAhorrado = response.data;
+                //console.log(importeAhorrado);
+                //sumo los importes para saber si me pasé de mi límite o no
+                let importeTotalAhorrado = Number(importeAhorrado) + Number(e.target.importe.value);
+                console.log(importeTotalAhorrado);
+                if(importeTotalAhorrado > importeMeta){
                     Swal.fire({
-                    icon: 'success',
-                    title: 'Ahorro agregado',
-                    timer: 1300,
-                    });
-                    
-                    
+                        icon: 'error',
+                        title: 'Importe ingresado supera el máximo de la meta',
+                        text:'Verifique el importe faltante desde Metas',
+                        });
+                }else{
+                    //console.log(mes)
+                    //console.log(anio)
+                    const nuevoAhorro = {
+                          descripcion: e.target.descripcion.value,
+                          user_id: id,
+                          meta_id: metaId,
+                          importe: e.target.importe.value,
+                          periodoCorrespondiente: mes+"/"+anio
+                        };
+                    console.log(nuevoAhorro);
+                    try {
+                        const response =  axios.post('api/ahorro-alta', nuevoAhorro).then(res =>{
+                           
+                            //console.log(res)
+                            if (res.status === 200 || res.status === 201) {
+                                //ALERTAS
+                                console.log(res);
+                                Swal.fire({
+                                icon: 'success',
+                                title: 'Ahorro agregado',
+                                timer: 1300,
+                                });
+                                
+                                
+                            }
+                        });
+                        navigate('/home')
+                    } catch (error) {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Ahorro no agregado',
+                        text:'Revise que los datos estén todos completos',
+                        timer: 2000,
+                        });
+                        console.error(error);
+                    }; 
                 }
-            });
-            navigate('/home')
-        } catch (error) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Ahorro no agregado',
-            text:'Revise que los datos estén todos completos',
-            timer: 2000,
-            });
-            console.error(error);
-        }; 
+            })
+        })
     }
+
+     
 
     //que se realicen los select de meses y anios en el formulario
 

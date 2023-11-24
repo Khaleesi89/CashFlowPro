@@ -17,7 +17,15 @@ class MetaController extends Controller
         return $metas->toJson();
     }
 
-
+    //trae una meta especifica
+    public function metaEspecifica($idMeta){
+        $meta = Meta::where('id',$idMeta)->get();
+       /*  if($metas->isEmpty()){
+            return 
+        } */
+        return $meta->toJson();
+    }
+    
     
 
     //crea las metas del usuario logueado

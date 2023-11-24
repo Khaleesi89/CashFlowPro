@@ -10,7 +10,7 @@ export const Navbar = () => {
     return (
               <nav className="navbar  navbar-expand-lg navbar-dark bg-primary">
               <div className="container-fluid">
-                <Link className="navbar-brand" to={'/'}>
+                <Link className="navbar-brand">
                   <LogoTitle />
                 </Link>
                 <div className="collapse navbar-collapse" id="navbarColor01">

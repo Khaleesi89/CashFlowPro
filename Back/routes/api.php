@@ -50,12 +50,14 @@ Route::post('/categoria-editar', [CategoriaController::class, 'update']);
 /* METAS */
 Route::get('/metas/{id}', [MetaController::class, 'metasUsuario']);
 Route::post('/metas-alta', [MetaController::class, 'create']);
+Route::get('/meta/{id}', [MetaController::class, 'metaEspecifica']);
 
 
 
 /* AHORROS */
 Route::post('/ahorro-alta', [AhorroController::class, 'create']);
 Route::get('/ahorrovsmetas/{id}', [AhorroController::class, 'progresoMetas']);
+Route::get('/ahorroPorMeta/{id}', [AhorroController::class, 'ahorroPorMeta']);
 
 
 
@@ -64,7 +66,7 @@ Route::controller(PresupuestoController::class)->group(function () {
     // Ruta para mostrar el presupuesto del mes actual
     //el problema de este fecha seleccionada que no trae lo del mes sino del dia actual
     Route::get('/presupuestos/{user_id}/{fechaSeleccionada}', 'mostrarPresupuestos');   
-    Route::get('/graficos/{user_id}/{fechaSeleccionada}', 'paraGrafico');   
+    Route::post('/graficos/{user_id}' ,'paraGrafico');   
 
 });
 

@@ -10,6 +10,7 @@ export const MetasSeguimiento = () => {
   const [totalAhorrosUsuario, setTotalAhorrosUsuario] = useState([]); // Estado para guardar los ahorros
   const [actualizarMetas, setActualizarMetas] = useState(true); // Bandera para controlar la actualización 
 
+  
   const ahorrosUsuario = useCallback(async () => {
     try {
       let usuario = localStorage.getItem('auth_usuario');
@@ -32,19 +33,33 @@ export const MetasSeguimiento = () => {
         (ahorro) => ahorro.meta_id === meta.id
       );
       const totalAhorros = metaAhorros.reduce(
-        (total, ahorro) => total + ahorro.importe,
+        (total, ahorro) => total + parseFloat(ahorro.importe),
         0
       );
       const porcentaje = (totalAhorros / meta.importe) * 100;
-      return porcentaje.toFixed(2); // Redondear el porcentaje a 2 decimales
+      
+      // Verificar si totalAhorros es un número antes de usar toFixed
+      const totalAhorrosDecimal = typeof totalAhorros === 'number' ? totalAhorros.toFixed(2) : totalAhorros;
+      const loQueFaltaPagar = meta.importe - totalAhorrosDecimal;
+      return {
+        porcentaje: porcentaje.toFixed(2),
+        totalAhorros: totalAhorrosDecimal,
+        faltaLlegar: loQueFaltaPagar.toFixed(2)
+      };
     };
+    
 
     if (actualizarMetas) {
-      const metasConPorcentaje = metas.map((meta) => ({
-        ...meta,
-        porcentaje: calcularPorcentaje(meta),
-      }));
-      console.log(metasConPorcentaje)
+      const metasConPorcentaje = metas.map((meta) => {
+        const { porcentaje, totalAhorros,faltaLlegar } = calcularPorcentaje(meta);
+        return {
+          ...meta,
+          porcentaje,
+          totalAhorros,
+          faltaLlegar,
+        };
+      });
+      console.log(metasConPorcentaje);
       setMetas(metasConPorcentaje);
       setActualizarMetas(false); // Desactivar la bandera después de la actualización para evitar la renderizacion infinita
     }
@@ -149,6 +164,8 @@ export const MetasSeguimiento = () => {
                             <th>Importe</th>
                             <th>Progreso</th>
                             <th>Porcentaje</th>
+                            <th>$ Ahorrado</th>
+                            <th>$ Faltante</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -166,6 +183,8 @@ export const MetasSeguimiento = () => {
                                 )}
                                 </td>
                                 <td>{meta.porcentaje}%</td>
+                                <td>$ {meta.totalAhorros}</td>
+                                <td>$ {meta.faltaLlegar}</td>
                             </tr>
                         ))}
                     </tbody>

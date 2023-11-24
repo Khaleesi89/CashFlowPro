@@ -12,7 +12,8 @@ import { renderToString } from 'react-dom/server';
 export const HomeLogueada = () => {
     const [categorias, setCategorias] = useState([]);
     const [data, setData] = useState([]);
-    //console.log(data);
+    const [meses, setMeses] = useState([]);
+    const [anios, setAnios] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,14 +24,17 @@ export const HomeLogueada = () => {
 
                 // Obtener la fecha actual
                 const fecha = new Date().toJSON().slice(0, 10);
-
+                const partesFecha = fecha.split('-');
+                const periodoActual = partesFecha[1]+'/'+partesFecha[0];
+                const fechaPaEnviar = {
+                    periodo: periodoActual
+                }
                 // Hacer la solicitud Axios
-                const response = await axios.get(`http://localhost:8000/api/graficos/${id}/${fecha}`);
+                const response = await axios.post(`http://localhost:8000/api/graficos/${id}`,fechaPaEnviar);
                 const info = response.data;
-
+                //console.log(info);
                 // Transformar el JSON y actualizar el estado
                 const data = [];
-
                 for (const key in info) {
                     if (info.hasOwnProperty(key)) {
                         const array = info[key];
@@ -78,7 +82,6 @@ export const HomeLogueada = () => {
         try {
             const usuario = JSON.parse(localStorage.getItem('auth_usuario'));
             const id = usuario.id;
-
             const response = await axios.get(`api/categorias/${id}`);
             const categoriasTotalesUsuario = response.data;
             //console.log(categoriasTotalesUsuario);
@@ -102,13 +105,12 @@ export const HomeLogueada = () => {
                     </option>
                 );
             }
-            //console.log(mesesOptions);
-            //console.log(aniosOptions);
+            
+           /*  console.log(anios);
+            console.log(meses); */
             //se usa una funcion de router dom server para transformar lo de jsx a html para el modal
             const mesesOptionsString = renderToString(mesesOptions);
             const aniosOptionsString = renderToString(aniosOptions);
-
-
             Swal.fire({
                 title: 'Registre un Ingreso',
                 html: `
@@ -156,10 +158,9 @@ export const HomeLogueada = () => {
                                     title: 'Ingreso agregado',
                                     timer: 1300,
                                 });
-                                
+                                fetchData();
                             }
                         })
-                        
                         .catch(error => {
                             Swal.fire({
                                 icon: 'error',
@@ -169,10 +170,155 @@ export const HomeLogueada = () => {
                             });
                             console.error(error);
                         });
+
+                        
                 }
             });
         } catch (error) {
             console.error('Error al obtener categorías:', error);
+        }
+    };
+
+
+    // Actualizar el gráfico
+    const fetchData = async () => {
+        try {
+        // Obtener el id del usuario
+        const usuario = JSON.parse(localStorage.getItem('auth_usuario'));
+        const id = usuario.id;
+        // Obtener la fecha actual
+        const fecha = new Date().toJSON().slice(0, 10);
+        const partesFecha = fecha.split('-');
+        const periodoActual = partesFecha[1]+'/'+partesFecha[0];
+        const fechaPaEnviar = {
+            periodo: periodoActual
+        };
+        // Hacer la solicitud Axios
+        const response = await axios.post(`http://localhost:8000/api/graficos/${id}`,fechaPaEnviar);
+        const info = response.data;
+        //console.log(info);
+        // Transformar el JSON y actualizar el estado
+        const data = [];
+        for (const key in info) {
+            if (info.hasOwnProperty(key)) {
+            const array = info[key];
+            //data[key] = data[key] || [];
+            for (const objeto of array) {
+                const existingItem = data.find(item => item.id === (objeto.categorias?.descripcion || objeto.descripcion));
+                if (existingItem) {
+                existingItem.value = Number(existingItem.value) + Number(objeto.importe);
+                } else {
+                data.push({
+                    id: objeto.categorias?.descripcion || objeto.descripcion,
+                    label: key,
+                    value: Number(objeto.importe),
+                    color: generarColorHSL(),
+                });
+                }
+            }
+            }
+        }
+        // Actualizar el estado
+        setData(data);
+        //console.log(data);
+        } catch (error) {
+        console.error(error);
+        }
+    };
+
+    //para los periodos del select
+    useEffect(() => {
+        const fechas = () => {
+                const fechaActual = new Date();
+                const anioActual = fechaActual.getFullYear();
+                const cincoAniosDespues = anioActual + 5;
+                const meses = Array.from({ length: 12 }, (_, i) => i + 1);
+                const mesesOptions = meses.map((mes) => (
+                    <option key={mes} value={mes}>
+                      {mes}
+                    </option>
+                  ));
+                const aniosOptions = [];
+                for (let i = anioActual; i <= cincoAniosDespues; i++) {
+                    aniosOptions.push(
+                        <option key={i} value={i}>
+                        {i}
+                        </option>
+                    );
+                }
+                setAnios(aniosOptions)
+                setMeses(mesesOptions)
+        }
+        fechas();
+        //console.log(anios)
+    },[]);
+
+
+    const consultarPeriodo = async (e)=>{
+        e.preventDefault();
+        try {
+            // Obtener el id del usuario
+            const usuario = JSON.parse(localStorage.getItem('auth_usuario'));
+            const id = usuario.id;
+
+            // Obtener la fecha enviada en el evento
+            let mes = e.target.mes.value
+            let anio = e.target.anio.value
+            if (mes >= 1 && mes <= 9) {
+                mes = '0' + mes; // Agrega el cero adelante
+            }
+            console.log(mes)
+            console.log(anio)
+            const fechaPaEnviar = {
+                periodo: mes+'/'+anio
+            }
+            console.log(fechaPaEnviar)
+            // Hacer la solicitud Axios
+            const response = await axios.post(`http://localhost:8000/api/graficos/${id}`,fechaPaEnviar);
+            const info = response.data;
+
+            console.log(info);
+           // Verificar si el objeto está vacío
+           const isEmpty = Object.values(info).every(item => Array.isArray(item) && item.length === 0);
+
+           if (isEmpty) {
+            Swal.fire({
+                icon: 'error',
+                title: 'No hay movimientos en el período solicitado',
+                text: 'Realice una nueva búsqueda',
+                timer: 2000,
+            });
+           } else {
+             // Transformar el JSON y actualizar el estado
+             const data = [];
+             for (const key in info) {
+                 if (info.hasOwnProperty(key)) {
+                     const array = info[key];
+                     //data[key] = data[key] || [];
+ 
+                     for (const objeto of array) {
+                         const existingItem = data.find(item => item.id === (objeto.categorias?.descripcion || objeto.descripcion));
+ 
+                         if (existingItem) {
+                             existingItem.value = Number(existingItem.value) + Number(objeto.importe);
+                         } else {
+                             data.push({
+                                 id: objeto.categorias?.descripcion || objeto.descripcion,
+                                 label: key,
+                                 value: Number(objeto.importe),
+                                 color: generarColorHSL(),
+                             });
+                         }
+                     }
+                 }
+             }
+             // Actualizar el estado
+             setData(data);
+             //console.log(data);
+           }
+
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -190,8 +336,19 @@ export const HomeLogueada = () => {
                     </div>
                     <div className="botonesAcciones">
                         <button className='botonAccion' onClick={handleOpenModal}>INGRESO</button>
-                        {/* <Botones onClick={handleOpenModal} text="INGRESO" /> */}
                         <Botones text="GASTO" />
+                    </div>
+                    <div className="periodosAnteriores">
+                        <label htmlFor="MesConsulta" className="form-label">Mes a consultar</label>
+                            <form onSubmit={consultarPeriodo}>
+                                <select id="mes" className="form-select">
+                                    {meses}
+                                </select>
+                                <select id="anio" className="form-select">
+                                    {anios}
+                                </select>
+                                <button type="submit" className='botonAccion'>Consultar</button>
+                            </form>
                     </div>
                 </div>
             </div>
