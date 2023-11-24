@@ -1,8 +1,8 @@
 # CashFlowPro
-Trabajo Práctico N° 2 
 
-Materia: Framework e Interoperabilidad
-Alumnas: Klimisch Marcia y Graff Rocío
+
+Materia: Trabajo Final : desarrollo de una app web
+Alumna: Klimisch Marcia
 Carrera: Tecnicatura Universitaria en Desarrollo Web
 Año : 2023
 
@@ -21,4 +21,11 @@ Comandos:
 9) para ejecutar el backend se usa        php artisan serve
 10) para ejecutar el frontend se usa       npm run dev
 11) para ejecutar el backend se usa (en una terminal diferente a la anterior)       php artisan serve
+
+tener en cuenta que si en algún momento la app tiene dificultades y no renderiza correctamente puede hacer:
+
+php artisan cache:clear
+php artisan view:clear
+
+si persiste el problema, deberá realizar migraciones y seeders nuevamente
 
