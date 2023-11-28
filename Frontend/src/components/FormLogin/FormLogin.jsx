@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import './FormLogin.css'
 import { useState } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
@@ -59,7 +58,7 @@ export const FormLogin = () =>{
         <>
 
             <div className="d-flex justify-content-center formLogin">
-                    <form className="mb-4 col-6" onSubmit={handleLogin} >
+                    <form className="mb-4" onSubmit={handleLogin} >
                         <div className="col text-center">
                             <label htmlFor="usuario" className="form-label">Usuario</label>
                             <input type="text" id="usuario" className="form-control" value={usuario} onChange={(e)=> setUsuario(e.target.value)} placeholder="Usuario" required />

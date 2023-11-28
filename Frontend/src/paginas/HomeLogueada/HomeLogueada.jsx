@@ -38,11 +38,8 @@ export const HomeLogueada = () => {
                 for (const key in info) {
                     if (info.hasOwnProperty(key)) {
                         const array = info[key];
-                        //data[key] = data[key] || [];
-
                         for (const objeto of array) {
                             const existingItem = data.find(item => item.id === (objeto.categorias?.descripcion || objeto.descripcion));
-
                             if (existingItem) {
                                 existingItem.value = Number(existingItem.value) + Number(objeto.importe);
                             } else {
@@ -56,9 +53,35 @@ export const HomeLogueada = () => {
                         }
                     }
                 }
+                console.log(data);
+                // Filtrar todos los elementos que NO tengan la etiqueta "ingresos"
+                const otrosItems = data.filter(item => item.label !== 'ingresos');
 
-                // Actualizar el estado
-                setData(data);
+                // Filtrar todos los elementos con la etiqueta "ingresos"
+                const ingresosItems = data.filter(item => item.label === 'ingresos');
+
+                // Obtener la suma de los valores de los elementos con la etiqueta "ingresos"
+                const totalIngresos = ingresosItems.reduce((total, item) => total + item.value, 0);
+
+                // Obtener la suma de los valores de los elementos que NO son "ingresos"
+                const totalOtros = otrosItems.reduce((total, item) => total + item.value, 0);
+
+                // Calcular el saldo disponible restando los valores de los otros items a los ingresos
+                const saldoDisponible = totalIngresos - totalOtros;
+
+                // Crear un nuevo elemento "Saldo Disponible"
+                const nuevoSaldo = {
+                    id: 'Saldo Disponible',
+                    label: 'Saldo Disponible',
+                    value: saldoDisponible,
+                    color: generarColorHSL(), // Esta función debe estar definida en tu código
+                };
+
+                // Crear un nuevo arreglo con los elementos que no son de "ingresos" y el nuevo "Saldo Disponible"
+                const newData = [...otrosItems, nuevoSaldo];
+
+                // Actualizar el estado con la nueva información
+                setData(newData); // Esto dependerá de cómo estés manejando el estado en tu aplicación
                 //console.log(data);
             } catch (error) {
                 console.error(error);
@@ -114,20 +137,23 @@ export const HomeLogueada = () => {
             Swal.fire({
                 title: 'Registre un Ingreso',
                 html: `
-                    <input type="text" id="descripcion" className="swal2-input" placeholder="Descripción">
-                    <input type="number" id="importe" className="swal2-input" placeholder="Importe">
+                    <label className='form-label' style='font-weight: bold;'>Descripción</label> 
+                    <input type="text" id="descripcion" className="swal2-input" style="padding: 10px;border-radius: 30px; margin-top: 5%;height: 40px;">
+                    <br>
+                    <label className='form-label' style='font-weight: bold;'>Importe</label> 
+                    <input type="number" id="importe" className="swal2-input" style="padding: 10px;border-radius: 30px; margin-top: 5%;height: 40px;">
                     <br>
                     <label htmlFor="categoria" className="form-label">Categoría</label>
-                    <select id="categoria" className="swal2-input">
+                    <select id="categoria" className="swal2-input" style="border-radius: 30px; margin-top: 5%;height: 40px;">
                         ${categoriasIngresoUsuario.map(categoria => `<option value="${categoria.id}">${categoria.descripcion}</option>`).join('')}
                     </select>
                     <br>
                     <label htmlFor="MesCorrespondiente" className="form-label">Mes al que corresponde el ingreso</label>
                     <br>
-                    <select id="mes" className="swal2-input">
+                    <select id="mesAlta" className="swal2-input" style="border-radius: 30px; margin-top: 5%;height: 40px;">
                     ${mesesOptionsString}
                     </select>
-                    <select id="anio" className="swal2-input">
+                    <select id="anioAlta" className="swal2-input" style="border-radius: 30px; margin-top: 5%;height: 40px;">
                     ${aniosOptionsString}
                     </select>
                 `,
@@ -137,18 +163,22 @@ export const HomeLogueada = () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Agregar cero adelante si el mes es de 1 a 9
-                    let mes = document.getElementById('mes').value
+                    let mes = document.getElementById('mesAlta').value
+                    console.log(mes);
                     if (mes >= 1 && mes <= 9) {
                         mes = '0' + mes; // Agrega el cero adelante
                     }
+                    console.log(mes);
+                    let anio = document.getElementById('anioAlta').value
+                    console.log()
                     const infoIngresoAlta = {
                         descripcion: document.getElementById('descripcion').value,
                         importe: document.getElementById('importe').value,
                         user_id: id,
                         categoria_id: document.getElementById('categoria').value,
-                        periodoCorrespondiente: mes+'/'+document.getElementById('anio').value
+                        periodoCorrespondiente: mes+'/'+anio
                     };
-                    //console.log(infoIngresoAlta)
+                    console.log(infoIngresoAlta)
                     axios.post('api/ingreso-alta', infoIngresoAlta)
                         .then(res => {
                             console.log(res);
@@ -158,8 +188,8 @@ export const HomeLogueada = () => {
                                     title: 'Ingreso agregado',
                                     timer: 1300,
                                 });
-                                fetchData();
                             }
+                            fetchData();
                         })
                         .catch(error => {
                             Swal.fire({
@@ -218,8 +248,35 @@ export const HomeLogueada = () => {
             }
             }
         }
-        // Actualizar el estado
-        setData(data);
+
+        // Filtrar todos los elementos que NO tengan la etiqueta "ingresos"
+        const otrosItems = data.filter(item => item.label !== 'ingresos');
+
+        // Filtrar todos los elementos con la etiqueta "ingresos"
+        const ingresosItems = data.filter(item => item.label === 'ingresos');
+
+        // Obtener la suma de los valores de los elementos con la etiqueta "ingresos"
+        const totalIngresos = ingresosItems.reduce((total, item) => total + item.value, 0);
+
+        // Obtener la suma de los valores de los elementos que NO son "ingresos"
+        const totalOtros = otrosItems.reduce((total, item) => total + item.value, 0);
+
+        // Calcular el saldo disponible restando los valores de los otros items a los ingresos
+        const saldoDisponible = totalIngresos - totalOtros;
+
+        // Crear un nuevo elemento "Saldo Disponible"
+        const nuevoSaldo = {
+            id: 'Saldo Disponible',
+            label: 'Saldo Disponible',
+            value: saldoDisponible,
+            color: generarColorHSL(), // Esta función debe estar definida en tu código
+        };
+
+        // Crear un nuevo arreglo con los elementos que no son de "ingresos" y el nuevo "Saldo Disponible"
+        const newData = [...otrosItems, nuevoSaldo];
+
+        // Actualizar el estado con la nueva información
+        setData(newData); // Esto dependerá de cómo estés manejando el estado en tu aplicación
         //console.log(data);
         } catch (error) {
         console.error(error);
@@ -312,8 +369,11 @@ export const HomeLogueada = () => {
                      }
                  }
              }
+
+            console.log(data)
              // Actualizar el estado
              setData(data);
+             
              //console.log(data);
            }
 
@@ -322,6 +382,8 @@ export const HomeLogueada = () => {
         }
     };
 
+    // Encuentra el elemento con la etiqueta "Saldo Disponible"
+    const saldoDisponible = data.find(item => item.label === 'Saldo Disponible');
 
     return (
         <>
@@ -332,22 +394,26 @@ export const HomeLogueada = () => {
                 </div>
                 <div className='textoOrdenado'>
                     <div className="explicacion">
-                        <p>El gráfico es dinámico. Teniendo en cuenta los ingresos y gastos que ud. va ingresando, le va a mostrar lo que tiene disponible</p>
+                        <p>El gráfico es dinámico. Teniendo en cuenta los movimientos que ud. va ingresando, le va a mostrar lo que tiene disponible. También puede visualizar de períodos anteriores </p>
+                    </div>
+                    <div className="explicacion">
+                        <p>Su saldo disponible es de ${saldoDisponible ? saldoDisponible.value : 0}</p>
                     </div>
                     <div className="botonesAcciones">
                         <button className='botonAccion' onClick={handleOpenModal}>INGRESO</button>
                         <Botones text="GASTO" />
                     </div>
+                    
                     <div className="periodosAnteriores">
-                        <label htmlFor="MesConsulta" className="form-label">Mes a consultar</label>
-                            <form onSubmit={consultarPeriodo}>
+                        <label htmlFor="MesConsulta" className="explicacion">Mes a consultar</label>
+                            <form className="consultaGrafico" onSubmit={consultarPeriodo}>
                                 <select id="mes" className="form-select">
                                     {meses}
                                 </select>
                                 <select id="anio" className="form-select">
                                     {anios}
                                 </select>
-                                <button type="submit" className='botonAccion'>Consultar</button>
+                                <button type="submit" className='botonAccion consulta'>Consultar</button>
                             </form>
                     </div>
                 </div>

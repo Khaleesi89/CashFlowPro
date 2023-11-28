@@ -51,7 +51,7 @@
 
 .socialmedia>a>svg:hover{
     
-    color: var(--color-hoover);
+    color: var(--color-hoover) !important;
     transform: scale(1.2);
 }
 
@@ -63,34 +63,58 @@
     };
 
 
-
-
-
-/* @media screen and(min-width: 1039px) {
-    .sb_footer-links_div{
+    /* Estilos para pantallas de menos de 480 píxeles- anchura maxima de 480px */
+@media (max-width: 480px) {
+    /* conocenos info util seguinos en redes */
+    .sb_footer-links{
         display: flex;
         margin-bottom: 10px;
       } 
-        
-} */
-/* @media screen and(max-width: 1269px) {
 
-    .dataFiscal>img{
-        width: 90px;
+  
+} 
+
+
+/* Estilos para pantallas pequeñas (teléfonos) hasta 600px */
+@media only screen and (max-width: 600px) {
+    /* conocenos info util seguinos en redes */
+    .sb_footer-links{
+        display: flex;
+        margin-bottom: 10px;
+    }  
+    /* tamaño del texto del footer */
+    .sb_footer-links{
+        font-size: 0.8rem;
+        padding: 1rem;
     }
-} */
-/* menor o igual a 600px */
+    
+    /* tamaño de los titulos del footer */
+    .sb_footer-links_div>h4{
+        font-size: 1rem;
+    }
 
-  
-    /* Hacer que los enlaces del footer se apilen verticalmente */
-    /* .sb_footer-links a {
-      display: block;
-      margin-bottom: 10px;
-    } */
-  
-    /* Ajustar el margen de los íconos de redes sociales */
-    /* .socialmedia a {
-      margin-right: 0;
-      margin-bottom: 10px;
-    } */
- 
+    /* iconos de socialmedia */
+    .sb_footer-links_div>.socialmedia>a>svg{
+        padding: 0.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+}
+
+/* Estilos para pantallas medianas (tabletas) entre 601 a 1024px*/
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 18px;
+        /* Otros estilos específicos para pantallas medianas */
+    }
+}
+
+/* Estilos para pantallas grandes (escritorio) mayores a 1025 */
+@media only screen and (min-width: 1025px) {
+    body {
+        font-size: 20px;
+        /* Otros estilos específicos para pantallas grandes */
+    }
+}
+
+

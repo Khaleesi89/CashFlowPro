@@ -143,7 +143,7 @@ export const Cashflow = () => {
                 <a className="nav-link" data-toggle="tab" id="tab3-tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Préstamos a 3ros</a>
                 </li>
             </ul>
-            <div className="tab-content" id="myTabContent">
+            <div className="tab-content formularioAhorro" id="myTabContent">
                 <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
                     {/* Contenido del formulario para la Tab 1 */}
                     <div className="titulo-seccion ">
@@ -158,7 +158,7 @@ export const Cashflow = () => {
                         <input type="text" className='form-control' name="importe" id="importe" value={importe} onChange={(e) => setImporte(e.target.value)}/> 
 
                         <label className='form-label'>Metas disponibles</label>
-                        <div className="">
+                        <div className="metasListado">
                             <select className="form-select" aria-label="Floating label select example" onChange= {(e) => setMetaId(e.target.value)}>
                                 <option hidden >Selecciona una meta</option>
                                 {metas.map((meta) => (

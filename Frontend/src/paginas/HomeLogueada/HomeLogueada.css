@@ -2,8 +2,9 @@
 .grafico{
     width: 800px;
     height: 700px;
-    margin: 1.5rem;
-    background-color: white;
+/*     margin: 2.5rem; 
+ *//*     margin-top: 5rem;
+ */    background-color: white;
 
 }
 
@@ -12,10 +13,8 @@
 }
 
 .botonAccion{
-    margin-top: 60px;
-    margin-left: 170px;
-  /* margin-top: 300px;
-  margin-left: 150px; */
+    margin-top: 50px;
+    margin-left: 370px;
 
 }
 
@@ -24,6 +23,20 @@
     background-color: var(--color-navbar);
     
 } 
+
+.consulta{
+    margin-left: 1%;
+}
+
+.consultaGrafico{
+    width: 10%;
+    margin-left: 37%;
+    margin-top: 2rem;
+}
+
+.consultaGrafico>.form-select{
+    margin-top: 1rem;
+}
 
 .botonAccion:active{
     transform: scale(1.1);
@@ -35,8 +48,247 @@
     font-size: 1.7rem;
     font-weight: bold;
     margin-top: 100px;
-    width: 500px;
+    width: 80%;
     text-align: center;
     margin-left: 40px;
 }
 
+.itemEliminar{
+    margin-right: 4rem;
+}
+
+.botonesAcciones>.botonAccion{
+    margin-left: 12rem;
+}
+
+#root > div.home-container-logueada > div.textoOrdenado > div.periodosAnteriores > form > button{
+    margin-left: 0rem;
+}
+
+
+#root > div.home-container-logueada > div.grafico > div > div > svg > rect{
+    margin: 0%;
+}
+
+/* Estilos para pantallas de menos de 480 píxeles- anchura maxima de 480px */
+@media (max-width: 480px) {
+    .grafico{
+        width: 25rem;
+        height: 25rem;
+        margin-top: 1rem;
+    }
+
+    .home-container-logueada{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .explicacion>p,.periodosAnteriores>.explicacion{
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .textoOrdenado{
+        margin-top: -7rem;
+    }
+    .botonesAcciones{
+        margin-left: 4.7rem;
+    }
+
+    .botonesAcciones>.botonAccion{
+        margin: auto;
+        margin-right: 1rem;
+        margin-top: 2rem;
+        
+    }
+
+    
+    .consultaGrafico>.form-select{
+        width: 200%;
+    }
+
+    .consulta{
+        margin-left: -2rem;
+    }
+
+    #root > div.home-container-logueada > div.grafico > div > div > svg > g > g:nth-child(4){
+        display: none;
+    }
+} 
+
+
+/* Estilos para pantallas pequeñas (teléfonos) hasta 600px */
+@media only screen and (max-width: 600px) {
+    .grafico{
+        width: 25rem;
+        height: 25rem;
+        margin-top: 1rem;
+    }
+
+    .home-container-logueada{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .explicacion>p,.periodosAnteriores>.explicacion{
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .textoOrdenado{
+        margin-top: -7rem;
+    }
+    .botonesAcciones{
+        margin-left: 4.7rem;
+    }
+
+    .botonesAcciones>.botonAccion{
+        margin: auto;
+        margin-right: 1rem;
+        margin-top: 2rem;
+        
+    }
+
+    
+    .consultaGrafico>.form-select{
+        width: 200%;
+    }
+
+    .consulta{
+        margin-left: -2rem;
+    }
+
+    #root > div.home-container-logueada > div.grafico > div > div > svg > g > g:nth-child(4){
+        display: none;
+    }
+}
+
+/* Estilos para pantallas medianas (tabletas) entre 601 a 1024px*/
+@media only screen and (min-width: 601px) and (max-width: 924px) {
+
+    .grafico{
+        width: 35rem;
+        height: 35rem;
+        margin: auto;
+        
+    }
+
+    .home-container-logueada{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .explicacion>p,.periodosAnteriores>.explicacion{
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .textoOrdenado{
+        margin-top: -7rem;
+        margin-bottom: 2rem
+    }
+    .botonesAcciones{
+        display: inline;
+        margin-left: 10rem;
+       
+    }
+
+    .botonesAcciones>.botonAccion{
+        margin-left: 1.6rem;
+        margin-top: 3rem;
+        
+    }
+
+    #root > div.home-container-logueada > div.textoOrdenado > div.periodosAnteriores > form > button{
+        margin-top: 2rem;
+    }
+    .consultaGrafico>.form-select{
+        width: 200%;
+    }
+
+    
+
+    #root > div.home-container-logueada > div.grafico > div > div > svg > g > g:nth-child(4){
+        display: none;
+    }
+
+    .sb_footer-links>div,
+    .sb_footer-links> div:nth-child(3) > h4,
+    div.sb_footer.section_padding > div > div:nth-child(4) > h4,
+    #root > div.footer > div.sb_footer.section_padding > div > div:nth-child(5) > h4{
+        font-size: 1rem;
+    }
+
+    #root > div.footer > div.sb_footer.section_padding > div > div > a > p{
+        font-size: 0.8rem;
+    }
+
+}
+
+/* Estilos para pantallas grandes (escritorio) mayores a 1025 */
+@media only screen and (min-width: 925px) and (max-width: 1125px) {
+    .grafico{
+        width: 55rem;
+        height: 55rem;
+        
+    }
+
+    .explicacion>p,.periodosAnteriores>.explicacion{
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .botonesAcciones>.botonAccion{
+        margin-left: 1.6rem;
+        margin-top: 3rem;
+        
+    }
+    
+    .consultaGrafico>.form-select{
+        width: 100px;
+        border: 1px solid rgb(126, 125, 125);
+    }
+    
+    #root > div.home-container-logueada > div.grafico > div > div > svg > g > g:nth-child(4){
+        display: none;
+    }
+
+    #root > div.home-container-logueada > div.textoOrdenado > div.periodosAnteriores > form > button{
+        margin-left: -2rem;
+    }
+}
+
+@media only screen and (min-width: 1126px) and (max-width: 1325px) {
+    .consultaGrafico>.form-select{
+        width: 100px;
+        border: 1px solid rgb(126, 125, 125);
+    }
+
+    .botonesAcciones>.botonAccion{
+        margin-left: 6.6rem;
+        margin-top: 3rem;
+        
+    }
+}
+
+@media only screen and (min-width: 1326px)  {
+    .consultaGrafico>.form-select{
+        width: 120px;
+        border: 1px solid rgb(126, 125, 125);
+        
+    }
+
+    .botonesAcciones>.botonAccion{
+        margin-left: 14.6rem;
+        margin-top: 3rem;
+        
+    }
+    .grafico{
+        width: 85rem;
+        height: 55rem;
+        margin-left: 2rem;
+    }
+}

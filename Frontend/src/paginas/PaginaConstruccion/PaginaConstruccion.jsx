@@ -10,9 +10,6 @@ function PaginaConstruccion() {
       <div className="paginaEnConstruccion">
         <p>Página en construcción...Próximamente</p>
       </div>
-
-
-
       <Footer/>
     
     </>

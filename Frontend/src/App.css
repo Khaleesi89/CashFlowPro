@@ -50,6 +50,10 @@ body{
 }
 
 .footer{
-  position: relative;
-  bottom: 60px;
+  /* position: relative;
+  bottom: 60px; */
+}
+
+.iconoSesion{
+  margin-right: 3rem;
 }

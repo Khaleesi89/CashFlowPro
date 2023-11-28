@@ -29,14 +29,17 @@ export const CategoriasABM = () => {
       tableRef.current.table = new Tabulator(tableRef.current, {
         data: categorias,
         height: "90%",
+        layout: "fitColumns", //fit columns to width of table (optional)
+        responsiveLayout: "collapse",
+        autoResize: true,
        /*  layout: "fitColumns",
         autoResize: true, */
         groupBy: "tipo_categoria",
         placeholder: "No existen categorías para este usuario.",
         columns: [
-          { title: "Descripción", field: "descripcion", width: 400,headerHozAlign: "center", hozAlign: "center",widthGrow: 1, minWidth: 250, responsive: 1 },
-          { title: "Tipo de categoría", field: "tipo_categoria",headerHozAlign: "center", width: 400, hozAlign: "center",widthGrow: 1, minWidth: 250, responsive: 1 },
-          { title: "Acción", field: "",headerHozAlign: "center", width: 400, hozAlign: "center", widthGrow: 1, minWidth: 250, responsive: 1,formatter: function (cell, formatterParams) {
+          { title: "Descripción", field: "descripcion", width: 400,headerHozAlign: "center", hozAlign: "center", minWidth: 80, responsive: 0 },
+          { title: "Tipo de categoría", field: "tipo_categoria",headerHozAlign: "center", width: 250, hozAlign: "center",minWidth: 110, responsive: 1 },
+          { title: "Acción", field: "",headerHozAlign: "center", hozAlign: "center", minWidth: 110, responsive: 0,formatter: function (cell, formatterParams) {
             let id_categoria = cell.getRow().getData().id;
             let descripcion_categoria = cell.getRow().getData().descripcion;
             let tipo_categoria = cell.getRow().getData().tipo_categoria; 
@@ -85,7 +88,7 @@ export const CategoriasABM = () => {
           <button id="download-xlsx" onClick={handleDownloadXLSX}>XLSX</button>
           <button id="download-pdf" onClick={handleDownloadPDF}>PDF</button>
         </div>
-        <div ref={tableRef} id="example-table"></div>
+        <div ref={tableRef} id="example-table" className='tablaCategorias'></div>
       </div>
       <Footer />
     </>

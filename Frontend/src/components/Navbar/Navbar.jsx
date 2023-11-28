@@ -12,7 +12,7 @@ import { SesionIniciada } from "./SesionIniciada/SesionIniciada"
 import CambioColor from "../CambioColor/CambioColor"
 
 
-export const Navbar = () => {
+export const Navbar = () => {//aqui estoy
 
   //para saber si hay un token/sesion iniciada y asi renderizar el componente correspondiente 
   let sesionIniciada
@@ -32,20 +32,17 @@ export const Navbar = () => {
 
 
   return (
-          <nav className="navbar navbar-expand-lg navbar-dark " style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
+          <nav className="navbar navbar-expand-xl navbar-dark " style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
               <div className="container-fluid" style={{ color: misColores.color, backgroundColor: misColores.backgroundColor }}>
-                <Link className="navbar-brand" to={'/'}>
+                <div className="navbar-brand">
                   <LogoTitle />
-                </Link>
+                </div>
                 {sesionIniciada ? (
                   <>
                   <div className="collapse navbar-collapse" id="navbarColor01">
                     <CategoriasNavbar />
                   </div>
                   
-                  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon" />
-                  </button>
                   <div className="sesion">
                     {sesionIniciada ? <SesionIniciada nombre={localStorage.getItem('nombre')}/> : <Sesion/>}
                   </div>
@@ -57,6 +54,9 @@ export const Navbar = () => {
                   </div>
                   
                 )}
+                  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon" />
+                  </button>
               </div>
             </nav>
     );

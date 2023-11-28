@@ -12,11 +12,11 @@ import Boton from "../Boton/Boton"
 export const Slogan = () => {
     return(
         <>
-                <div className="texto1">
-                    <h3>No más pagos vencidos, no más preocupaciones por las cuentas!!!!</h3>
+                <div className="textoExplicativo">
+                    <p>No más pagos vencidos, no más preocupaciones por las cuentas!!!!</p>
                 </div>
-                <div className="texto2">
-                    <h3><span>CashFlowPro</span> te mantiene al tanto para que te ocupes de lo más importante</h3>
+                <div className="textoExplicativo">
+                    <p><span>CashFlowPro</span> te mantiene al tanto para que te ocupes de lo más importante</p>
                 </div>
                 <Boton/>
         </>

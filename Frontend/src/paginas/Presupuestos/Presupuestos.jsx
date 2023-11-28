@@ -6,6 +6,7 @@ import "tabulator-tables/dist/css/tabulator.min.css";
 import { ReactTabulator } from "react-tabulator";
 import { TabulatorFull as Tabulator } from "tabulator-tables";
 import { useCurrency } from "../../components/CurrencyContext/CurrencyContext";
+import './Presupuestos.css'
 
 const Presupuestos = (() => {
   const [userId, setUserId] = useState(null);
@@ -100,14 +101,14 @@ const Presupuestos = (() => {
 
   //COLUMNAS PARA PODER HACER LAS TABLAS
   const columns = [
-    { title: "Descripción", field: "descripcion",hozAlign: "center",headerHozAlign: "center" },
-    { title: "Importe", field: "importe", hozAlign: "center",headerHozAlign: "center", formatter: function(cell, formatterParams, onRendered) {
+    { title: "Descripción", field: "descripcion",minWidth: 80,hozAlign: "center",headerHozAlign: "center",responsive: 0},
+    { title: "Importe", field: "importe",minWidth: 80, hozAlign: "center",headerHozAlign: "center",responsive: 0, formatter: function(cell, formatterParams, onRendered) {
       const value = cell.getRow().getData().importe;
       const totalMultiplicado = (value * valorMoneda).toFixed(2);
       //console.log(totalMultiplicado);
       return totalMultiplicado;
     } },
-    { title: "Entidad", field: "entidad", formatter: function(cell, formatterParams, onRendered) {
+    { title: "Entidad", field: "entidad",responsive: 1, formatter: function(cell, formatterParams, onRendered) {
         // Obtén el valor de la celda
         const value = cell.getRow().getData().entidad;
         //console.log(value);
@@ -133,7 +134,7 @@ const Presupuestos = (() => {
             const totalMultiplicado = (value * valorMoneda).toFixed(2);
             return totalMultiplicado;
           } },
-          { title: "Entidad", field: "entidad",hozAlign: "center",headerHozAlign: "center", download : true, formatter: function(cell, formatterParams, onRendered) {
+          { title: "Entidad", field: "entidad",hozAlign: "center",responsive: 1,headerHozAlign: "center", download : true, formatter: function(cell, formatterParams, onRendered) {
             // Obtén el valor de la celda
             const value = cell.getRow().getData().entidad;
             //console.log(value);
@@ -231,19 +232,23 @@ const Presupuestos = (() => {
           <button
             type="submit"
             className="btn btn-primary col-12"
-            style={{ marginTop: "2.5rem" }}
+            /* style={{ marginTop: "2.5rem" }} */
           >
             Buscar
           </button>
         </form>
+        <div className="descargas">
+          <button className="btn btn-primary" onClick={handleDownloadPDF}>PDF</button>
+          <button className="btn btn-primary" onClick={handleDownloadExcel}>Excel</button>
+
+        </div>
         {loading && <p>Cargando datos...</p>}
-        <button className="btn btn-primary" onClick={handleDownloadPDF}>PDF</button>
-        <button className="btn btn-primary" onClick={handleDownloadExcel}>Excel</button>
+
         {!loading && presupuesto && (
           <div className="row d-flex gap-2 justify-content-center">
             {Object.entries(presupuesto).map((data, index) => {
               return (
-                <div className="col col-6" key={index}>
+                <div className="col col-md-6 col-sm-12 col-xs-12 " key={index}>
                   {data[0] === "ingresos" && (
                     <h2 className="text-success text-capitalize">{data[0]}</h2>
                   )}
@@ -268,6 +273,11 @@ const Presupuestos = (() => {
                       data={data[1]}
                       options={{
                         layout: "fitColumns",
+                        /* responsiveLayout: "collapse",
+                        autoResize: true,
+                        height: "90%",
+                        width:"90%" */
+
                       }}
                     /> 
                    </div>

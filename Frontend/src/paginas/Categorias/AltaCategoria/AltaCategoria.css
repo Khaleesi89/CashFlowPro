@@ -46,6 +46,38 @@
 }
 
 .body-categoria>.titulo-seccion>h2{
-    position: absolute;
-    left: 1085px;
+    margin:auto;
+    margin-bottom: 2%;
+}
+
+
+/* Estilos para pantallas de menos de 480 píxeles- anchura maxima de 480px */
+@media (max-width: 480px) {
+    
+} 
+
+
+/* Estilos para pantallas pequeñas (teléfonos) hasta 600px */
+@media only screen and (max-width: 600px) {
+    #root > div.body-categoria > form{
+        width: 80%;
+    }
+}
+
+/* Estilos para pantallas medianas (tabletas) entre 601 a 1024px*/
+@media only screen and (min-width: 601px) and (max-width: 924px) {
+    #root > div.body-categoria > form{
+        width: 80%;
+
+    }
+
+}
+
+/* Estilos para pantallas grandes (escritorio) mayores a 1025 */
+/* @media only screen and (min-width: 925px) {
+    
+} */
+
+@media only screen and (min-width: 925px) and (max-width: 1190px) {
+    
 }

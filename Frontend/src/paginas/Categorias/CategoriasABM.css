@@ -1,9 +1,11 @@
 
 
 #example-table{
-    width:52.7%;
+    /* width:51.5%; */
     margin: auto;
     border-radius: 30px;
+    margin-top: 2%;
+    margin-bottom: 1rem;
    
 }
 
@@ -36,15 +38,23 @@
     flex-direction: column;
 }
 
-.generar{
+/* .generar{
     position: absolute;
-    left: 1450px;
+    left: 60%;
     top: 330px;
+} */
+
+.generar {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    margin-top: 20px; /* Puedes ajustar este margen según sea necesario */
 }
 
 .generar>button{
     font-size: 1rem;
     padding: 8px;
+    margin-left: 1rem;
 }
 
 .generar>button:hover{
@@ -53,8 +63,8 @@
 }
 
 .cateBoton{
-    position: relative;
-    /* left: 520px; */
+    margin-left: 28%;  
+    width: 15%;  
 }
 
 .cateBoton>button:hover{
@@ -77,4 +87,48 @@
     padding: auto;
     margin-bottom: 60px;
     margin-top: 40px;
+}
+
+.container-fluid{
+    width: 99%;
+}
+/* .tablaCategorias{
+    width: 60%;
+}
+ */
+
+ .navbar{
+    --bs-navbar-nav-link-padding-x:-1px;
+ }
+
+/* Estilos para pantallas de menos de 480 píxeles- anchura maxima de 480px */
+@media (max-width: 480px) {
+    
+} 
+
+
+/* Estilos para pantallas pequeñas (teléfonos) hasta 600px */
+@media only screen and (max-width: 600px) {
+   
+}
+
+/* Estilos para pantallas medianas (tabletas) entre 601 a 1024px*/
+@media only screen and (min-width: 601px) and (max-width: 924px) {
+    .cateBoton{
+        margin-left: 35%;  
+        width: 15%;  
+    }
+
+}
+
+/* Estilos para pantallas grandes (escritorio) mayores a 1025 */
+/* @media only screen and (min-width: 925px) {
+    
+} */
+
+@media only screen and (min-width: 925px) and (max-width: 1190px) {
+    #example-table{
+        width: 60%;
+        padding: 2%;
+    }
 }

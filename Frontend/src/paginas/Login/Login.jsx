@@ -1,7 +1,7 @@
 import { Navbar } from "../../components/Navbar/Navbar";
 import FormLogin from "../../components/FormLogin/FormLogin";
 import Footer from "../../Components/Footer/Footer";
-
+import './Login.css'
 
 
 export const Login = () =>{

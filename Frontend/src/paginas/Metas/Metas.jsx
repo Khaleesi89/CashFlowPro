@@ -51,7 +51,7 @@ function Metas() {
           <div className="titulo-seccion ">
                   <h2>Metas Financieras</h2>
           </div>
-          <form className="ahorroForm" onSubmit={altaMetas}>
+          <form className="metasForm" onSubmit={altaMetas}>
               {/* Aquí coloca los campos y elementos de tu formulario para la Tab 1 */}
               <label className='form-label'>Descripción</label>
               <input type="text" className='form-control' name="descripcion"  id="descripcion" />
