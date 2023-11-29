@@ -17,40 +17,86 @@ class GastosSeeder extends Seeder
         //usuario 1
 
         Gasto::create([
-            'descripcion' => "alquiler mes octubre",
+            'descripcion' => "alquiler mes noviembre",
             'importe' => "1000",
-            'fecha_vencimiento' => "20/10/2023",
+            'fecha_vencimiento' => "20/11/2023",
             'user_id' => "1",
             'categoria_id' => "9",
             'periodoCorrespondiente' => "11/2023"
            ]);
 
         Gasto::create([
+        'descripcion' => "alquiler mes octubre",
+        'importe' => "1000",
+        'fecha_vencimiento' => "20/10/2023",
+        'user_id' => "1",
+        'categoria_id' => "9",
+        'periodoCorrespondiente' => "10/2023"
+        ]);
+
+
+        Gasto::create([
             'descripcion' => "sushi con mama",
             'importe' => "432",
-            'fecha_vencimiento' => "20/10/2023",
+            'fecha_vencimiento' => "20/11/2023",
             'user_id' => "1",
             'categoria_id' => "8",
-            'periodoCorrespondiente' => "10/2023"
+            'periodoCorrespondiente' => "11/2023"
            ]);
 
         Gasto::create([
-            'descripcion' => "combustible cachirulito",
+        'descripcion' => "sushi con Felipe",
+        'importe' => "11432",
+        'fecha_vencimiento' => "20/10/2023",
+        'user_id' => "1",
+        'categoria_id' => "8",
+        'periodoCorrespondiente' => "10/2023"
+        ]);
+
+        Gasto::create([
+            'descripcion' => "combustible septiembre",
             'importe' => "876",
-            'fecha_vencimiento' => "20/10/2023",
+            'fecha_vencimiento' => "20/09/2023",
             'user_id' => "1",
             'categoria_id' => "7",
             'periodoCorrespondiente' => "09/2023"
-           ]);
+        ]);
+
+        Gasto::create([
+            'descripcion' => "combustible enero",
+            'importe' => "876",
+            'fecha_vencimiento' => "20/01/2023",
+            'user_id' => "1",
+            'categoria_id' => "7",
+            'periodoCorrespondiente' => "01/2023"
+        ]);
 
         Gasto::create([
             'descripcion' => "adicional obra social",
             'importe' => "988",
-            'fecha_vencimiento' => "20/10/2023",
+            'fecha_vencimiento' => "20/11/2023",
             'user_id' => "1",
             'categoria_id' => "6",
             'periodoCorrespondiente' => "11/2023"
            ]);
+        
+        Gasto::create([
+        'descripcion' => "adicional obra social",
+        'importe' => "988",
+        'fecha_vencimiento' => "20/10/2023",
+        'user_id' => "1",
+        'categoria_id' => "6",
+        'periodoCorrespondiente' => "10/2023"
+        ]);
+
+        Gasto::create([
+            'descripcion' => "adicional obra social",
+            'importe' => "988",
+            'fecha_vencimiento' => "20/1/62023",
+            'user_id' => "1",
+            'categoria_id' => "6",
+            'periodoCorrespondiente' => "06/2023"
+            ]);
 
 
         //usuario 2

@@ -32,6 +32,38 @@ class IngresosSeeder extends Seeder
         ]);
 
 
+        Ingreso::create([
+            'descripcion' => "sueldo enero",
+            'importe' => "100000",
+            'user_id' => "1",
+            'categoria_id' => "1",
+            'periodoCorrespondiente' => "01/2023"
+        ]);
+
+        Ingreso::create([
+            'descripcion' => "sueldo junio",
+            'importe' => "178888",
+            'user_id' => "1",
+            'categoria_id' => "1",
+            'periodoCorrespondiente' => "06/2023"
+        ]);
+
+        Ingreso::create([
+            'descripcion' => "sueldo octubre",
+            'importe' => "100000",
+            'user_id' => "1",
+            'categoria_id' => "1",
+            'periodoCorrespondiente' => "10/2023"
+        ]);
+
+        Ingreso::create([
+            'descripcion' => "aguinaldo septiembre",
+            'importe' => "178888",
+            'user_id' => "1",
+            'categoria_id' => "2",
+            'periodoCorrespondiente' => "09/2023"
+        ]);
+
 
         //usuario 2
 

@@ -156,7 +156,7 @@ export const MetasSeguimiento = () => {
             <div className="titulo-seccion ">
                 <h2>Metas Financieras</h2>
             </div>
-            <button className='botonAccion' onClick={handleOpenModal}>ALTA DE META</button>
+            <button className='botonAccion' onClick={handleOpenModal}>NUEVA META</button>
             <div className="table-container">
                 <table id="data-table" className="modern-table">
                     <thead>

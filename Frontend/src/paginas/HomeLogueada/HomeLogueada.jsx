@@ -370,10 +370,35 @@ export const HomeLogueada = () => {
                  }
              }
 
-            console.log(data)
-             // Actualizar el estado
-             setData(data);
-             
+            // Filtrar todos los elementos que NO tengan la etiqueta "ingresos"
+            const otrosItems = data.filter(item => item.label !== 'ingresos');
+
+            // Filtrar todos los elementos con la etiqueta "ingresos"
+            const ingresosItems = data.filter(item => item.label === 'ingresos');
+
+            // Obtener la suma de los valores de los elementos con la etiqueta "ingresos"
+            const totalIngresos = ingresosItems.reduce((total, item) => total + item.value, 0);
+
+            // Obtener la suma de los valores de los elementos que NO son "ingresos"
+            const totalOtros = otrosItems.reduce((total, item) => total + item.value, 0);
+
+            // Calcular el saldo disponible restando los valores de los otros items a los ingresos
+            const saldoDisponible = totalIngresos - totalOtros;
+
+            // Crear un nuevo elemento "Saldo Disponible"
+            const nuevoSaldo = {
+                id: 'Saldo Disponible',
+                label: 'Saldo Disponible',
+                value: saldoDisponible,
+                color: generarColorHSL(), // Esta función debe estar definida en tu código
+            };
+
+            // Crear un nuevo arreglo con los elementos que no son de "ingresos" y el nuevo "Saldo Disponible"
+            const newData = [...otrosItems, nuevoSaldo];
+
+            // Actualizar el estado con la nueva información
+            setData(newData); // Esto dependerá de cómo estés manejando el estado en tu aplicación
+                
              //console.log(data);
            }
 
@@ -384,6 +409,9 @@ export const HomeLogueada = () => {
 
     // Encuentra el elemento con la etiqueta "Saldo Disponible"
     const saldoDisponible = data.find(item => item.label === 'Saldo Disponible');
+    console.log('lo que tiene saldoDisponible')
+    console.log(saldoDisponible)
+
 
     return (
         <>
