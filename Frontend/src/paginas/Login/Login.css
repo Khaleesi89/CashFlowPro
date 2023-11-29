@@ -1,0 +1,45 @@
+.formLogin{
+    background-color: var(--color-secundario);
+    width: 40%;
+    margin: auto;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+/* Estilos para pantallas de menos de 480 píxeles- anchura maxima de 480px */
+@media (max-width: 480px) {
+    .formLogin{
+        width: 90%;
+    }
+} 
+
+
+/* Estilos para pantallas pequeñas (teléfonos) hasta 600px */
+@media only screen and (max-width: 600px) {
+    .formLogin{
+        width: 90%;
+    }
+}
+
+/* Estilos para pantallas medianas (tabletas) entre 601 a 1024px*/
+@media only screen and (min-width: 601px) and (max-width: 924px) {
+    .formLogin{
+        width: 90%;
+    }
+
+    .sb_footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    
+    .textitoFooter{
+        font-size: 1rem;
+    }
+    
+}
+
+/* Estilos para pantallas grandes (escritorio) mayores a 1025 */
+@media only screen and (min-width: 925px) {
+    
+}

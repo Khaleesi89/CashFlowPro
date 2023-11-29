@@ -1,0 +1,59 @@
+/* FONT FACE */
+
+
+@font-face {
+  font-family:'titulo' ;
+  src: url(../public/fonts/LexendZetta.ttf) format('truetype');
+}
+@font-face {
+  font-family:'parrafos' ;
+  src: url(../public/fonts/MartelSans.ttf) format('truetype');
+}
+
+@font-face {
+  font-family:'menus' ;
+  src: url(../public/fonts/YsabeauSC.ttf) format('truetype');
+}
+
+/* ROOT */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --letra-titulo: 'titulo';
+  --letra-parrafos: 'parrafos';
+  --letra-menu: 'menus';
+  --color-titulo: #41d7a7;
+  --color-menus: #fff;
+  --color-navbar:#593196;
+  --color-secundario: #a991d4;
+  --color-hoover: #41d7a7;
+
+}
+
+body{
+  width: 75vw;
+  height: 100vh;
+}
+
+/*******************ESTILOS COMPARTIDOS POR TODA LA APP ****************/
+
+.titulo-seccion{
+  margin: 4rem;
+  font-family: 'parrafos';
+  font-weight: bolder;
+  font-family: 'parrafos';
+}
+
+.footer{
+  /* position: relative;
+  bottom: 60px; */
+}
+
+.iconoSesion{
+  margin-right: 3rem;
+}

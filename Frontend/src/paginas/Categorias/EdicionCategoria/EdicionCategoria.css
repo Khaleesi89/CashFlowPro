@@ -1,0 +1,65 @@
+.body-categoria{
+    display: flex;
+    flex-direction: column;
+    height: 49.69vh;
+}
+
+
+
+.body-categoria>.formulario{
+    background-color: var(--color-secundario);
+    width: 40%;
+    margin: auto;
+    border-radius: 40px;
+    padding: 20px 20px 20px;
+}
+
+.form-check{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    
+}
+
+.form-check-input{
+    font-size: 20px;
+    
+}
+.form-control{
+    border-radius: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.formulario>.col>.form-label{
+    margin-top: 20px;
+    color: var(--color-menus);
+    font-weight: bolder;
+    letter-spacing: 2px;
+
+}
+
+.body-categoria > .formulario >.col>.form-check>.form-check-label{
+    color: var(--color-menus);
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+
+.body-categoria>.titulo-seccion>h2{
+    margin:auto;
+    margin-bottom: 2%;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 924px) {
+    #root > div.body-categoria > form{
+        width: 80%;
+
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    #root > div.body-categoria > form{
+        width: 80%;
+    }
+}

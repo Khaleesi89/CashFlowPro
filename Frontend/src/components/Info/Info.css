@@ -1,0 +1,45 @@
+
+.imagenInfo>img{
+    width: 60%; 
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.relleno{
+    background-color: var(--color-hoover);
+    height: 150px;
+    margin-top: 70px;
+    display: flex;
+    justify-content:space-evenly
+}
+
+.relleno>p{
+    margin-top: 55px; 
+    font-weight: bolder;
+    font-family: 'menus';
+    color: var(--color-menus);
+    font-size: 2rem;
+}
+
+.relleno>p:hover{
+    transform:scale(1.1);
+    color: var(--color-navbar);
+}
+
+
+.dequesetrata{
+    display: flex;
+}
+
+.textoExplicativo{
+    margin-top: 12%; 
+}
+
+.textoExplicativo>p{
+    text-align: center;
+    color: var(--color-titulo);
+    margin-right: 10%;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    font-family: 'parrafos';
+}
