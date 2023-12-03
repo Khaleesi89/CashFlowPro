@@ -53,7 +53,7 @@ export const HomeLogueada = () => {
                         }
                     }
                 }
-                console.log(data);
+                //console.log(data);
                 // Filtrar todos los elementos que NO tengan la etiqueta "ingresos"
                 const otrosItems = data.filter(item => item.label !== 'ingresos');
 
@@ -164,13 +164,13 @@ export const HomeLogueada = () => {
                 if (result.isConfirmed) {
                     // Agregar cero adelante si el mes es de 1 a 9
                     let mes = document.getElementById('mesAlta').value
-                    console.log(mes);
+                    //console.log(mes);
                     if (mes >= 1 && mes <= 9) {
                         mes = '0' + mes; // Agrega el cero adelante
                     }
-                    console.log(mes);
+                    //console.log(mes);
                     let anio = document.getElementById('anioAlta').value
-                    console.log()
+                    //console.log()
                     const infoIngresoAlta = {
                         descripcion: document.getElementById('descripcion').value,
                         importe: document.getElementById('importe').value,
@@ -178,10 +178,10 @@ export const HomeLogueada = () => {
                         categoria_id: document.getElementById('categoria').value,
                         periodoCorrespondiente: mes+'/'+anio
                     };
-                    console.log(infoIngresoAlta)
+                    //console.log(infoIngresoAlta)
                     axios.post('api/ingreso-alta', infoIngresoAlta)
                         .then(res => {
-                            console.log(res);
+                            //console.log(res);
                             if (res.status === 200 || res.status === 201) {
                                 Swal.fire({
                                     icon: 'success',
@@ -209,7 +209,116 @@ export const HomeLogueada = () => {
         }
     };
 
+    //FUNCION PARA INGRESAR UN GASTO
+    const altaGasto = async () => {
+        try {
+            const usuario = JSON.parse(localStorage.getItem('auth_usuario'));
+            const id = usuario.id;
+            const response = await axios.get(`api/categorias/${id}`);
+            const categoriasTotalesUsuario = response.data;
+            //console.log(categoriasTotalesUsuario);
+            const categoriasGastosUsuario = categoriasTotalesUsuario.filter(categoria => categoria.tipo_categoria === "gasto");
+            //console.log(categoriasIngresoUsuario);
+            setCategorias(categoriasGastosUsuario);
+            const fechaActual = new Date();
+            const anioActual = fechaActual.getFullYear();
+            const cincoAniosDespues = anioActual + 5;
+            const meses = Array.from({ length: 12 }, (_, i) => i + 1);
+            const mesesOptions = meses.map((mes) => (
+                <option key={mes} value={mes}>
+                  {mes}
+                </option>
+              ));
+            const aniosOptions = [];
+            for (let i = anioActual; i <= cincoAniosDespues; i++) {
+                aniosOptions.push(
+                    <option key={i} value={i}>
+                    {i}
+                    </option>
+                );
+            }
+            
+           /*  console.log(anios);
+            console.log(meses); */
+            //se usa una funcion de router dom server para transformar lo de jsx a html para el modal
+            const mesesOptionsString = renderToString(mesesOptions);
+            const aniosOptionsString = renderToString(aniosOptions);
+            Swal.fire({
+                title: 'Registre un Gasto',
+                html: `
+                    <label className='form-label' style='font-weight: bold;'>Descripción</label> 
+                    <input type="text" id="descripcion" className="swal2-input" style="padding: 10px;border-radius: 30px; margin-top: 5%;height: 40px;">
+                    <br>
+                    <label className='form-label' style='font-weight: bold;'>Importe</label> 
+                    <input type="number" id="importe" className="swal2-input" style="padding: 10px;border-radius: 30px; margin-top: 5%;height: 40px;">
+                    <br>
+                    <label htmlFor="categoria" className="form-label">Categoría</label>
+                    <select id="categoria" className="swal2-input" style="border-radius: 30px; margin-top: 5%;height: 40px;">
+                        ${categoriasGastosUsuario.map(categoria => `<option value="${categoria.id}">${categoria.descripcion}</option>`).join('')}
+                    </select>
+                    <br>
+                    <label htmlFor="MesCorrespondiente" className="form-label">Mes al que corresponde el ingreso</label>
+                    <br>
+                    <select id="mesAlta" className="swal2-input" style="border-radius: 30px; margin-top: 5%;height: 40px;">
+                    ${mesesOptionsString}
+                    </select>
+                    <select id="anioAlta" className="swal2-input" style="border-radius: 30px; margin-top: 5%;height: 40px;">
+                    ${aniosOptionsString}
+                    </select>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Agregar cero adelante si el mes es de 1 a 9
+                    let mes = document.getElementById('mesAlta').value
+                    console.log(mes);
+                    if (mes >= 1 && mes <= 9) {
+                        mes = '0' + mes; // Agrega el cero adelante
+                    }
+                    //console.log(mes);
+                    let anio = document.getElementById('anioAlta').value
+                    //console.log()
+                    const infoGastoAlta = {
+                        descripcion: document.getElementById('descripcion').value,
+                        importe: document.getElementById('importe').value,
+                        user_id: id,
+                        categoria_id: document.getElementById('categoria').value,
+                        periodoCorrespondiente: mes+'/'+anio
+                    };
+                    //console.log(infoGastoAlta)
+                    axios.post('api/gasto-alta', infoGastoAlta)
+                        .then(res => {
+                            //console.log(res);
+                            if (res.status === 200 || res.status === 201) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Gasto agregado',
+                                    timer: 1300,
+                                });
+                            }
+                            fetchData();
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gasto no agregado',
+                                text: 'Revise que los datos estén todos completos',
+                                timer: 2000,
+                            });
+                            console.error(error);
+                        });
 
+                        
+                }
+            });
+        } catch (error) {
+            console.error('Error al obtener categorías:', error);
+        }
+    };
+
+    
     // Actualizar el gráfico
     const fetchData = async () => {
         try {
@@ -249,6 +358,7 @@ export const HomeLogueada = () => {
             }
         }
 
+        //console.log(data)
         // Filtrar todos los elementos que NO tengan la etiqueta "ingresos"
         const otrosItems = data.filter(item => item.label !== 'ingresos');
 
@@ -409,8 +519,8 @@ export const HomeLogueada = () => {
 
     // Encuentra el elemento con la etiqueta "Saldo Disponible"
     const saldoDisponible = data.find(item => item.label === 'Saldo Disponible');
-    console.log('lo que tiene saldoDisponible')
-    console.log(saldoDisponible)
+    //console.log('lo que tiene saldoDisponible')
+    //console.log(saldoDisponible)
 
 
     return (
@@ -429,7 +539,7 @@ export const HomeLogueada = () => {
                     </div>
                     <div className="botonesAcciones">
                         <button className='botonAccion' onClick={handleOpenModal}>INGRESO</button>
-                        <Botones text="GASTO" />
+                        <button className='botonAccion' onClick={altaGasto}>GASTO</button>
                     </div>
                     
                     <div className="periodosAnteriores">
