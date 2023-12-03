@@ -45,7 +45,7 @@ class PrestamosSeeder extends Seeder
             'descripcion' => "Cristian",
             'importe' => "12433",
             'user_id' => "2",
-            'periodoCorrespondiente' => "11/2023"
+            'periodoCorrespondiente' => "12/2023"
         ]);
     }
 }

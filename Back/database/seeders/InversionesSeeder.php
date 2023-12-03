@@ -37,7 +37,7 @@ class InversionesSeeder extends Seeder
             'importe' => "4300",
             'entidad' => "Banco Galicia",
             'user_id' => "1",
-            'periodoCorrespondiente' => "01/2023"
+            'periodoCorrespondiente' => "12/2023"
            ]);
 
         Inversion::create([

@@ -20,21 +20,23 @@ class GastoController extends Controller
         $request->validate([
             'descripcion' => 'required|string',
             'importe' => 'required|numeric',
-            'fecha_vencimiento' => 'required|date',
-            'categoria_id' => 'required|integer',
+            'periodoCorrespondiente' => 'required|string|regex:/^\d{1,2}\/\d{4}$/',
+            
+            /* 'categoria_id' => 'required', */
         ]);
 
         // Crea un nuevo ingreso
-        $gastos = Gasto::create([
-            'descripcion' => $request->input('descripcion'),
-            'importe' => $request->input('importe'),
-            'fecha_vencimiento' => $request->input('fecha_vencimiento'),
-            'user_id' => auth()->user()->id, // Asigna el ID del usuario actual
-            'categoria_id' => $request->input('categoria_id'),
+        $ingreso = Gasto::create([
+            'descripcion' => $request->descripcion,
+            'importe' => $request->importe,
+            'user_id' =>$request->user_id, // Asigna el ID del usuario actual
+            'categoria_id' => $request->categoria_id,
+            'periodoCorrespondiente' =>$request->periodoCorrespondiente
         ]);
 
-        return response()->json(['message' => 'Gasto creado con éxito', 'data' => $gastos], 201);
+        return response()->json(['message' => 'Gasto creado con éxito', 'data' => $ingreso], 201);
     }
+
 
     public function update(Request $request, $id)
     {

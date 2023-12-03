@@ -18,7 +18,6 @@ class Gasto extends Model
         'id',
         'descripcion',
         'importe',
-        'fecha_vencimiento',
         'user_id',
         'categoria_id',
         'periodoCorrespondiente'

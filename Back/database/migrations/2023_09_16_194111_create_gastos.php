@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('descripcion')->nullable();
             $table->string('importe');
-            $table->string('fecha_vencimiento');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('categoria_id')->constrained('categorias')->nullable();;
             $table->string('periodoCorrespondiente');

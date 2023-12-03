@@ -10,6 +10,8 @@ use App\Http\Controllers\AhorroController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\MonedaController;
 use App\Http\Controllers\IngresoController;
+use App\Http\Controllers\GastoController;
+
 
 
 
@@ -75,3 +77,6 @@ Route::get('/conversion', [MonedaController::class, 'obtenerMonedas']);
 
 /* INGRESOS */
 Route::post('/ingreso-alta', [IngresoController::class, 'store']);
+
+/* GASTOS */
+Route::post('/gasto-alta', [GastoController::class, 'store']);

@@ -16,11 +16,11 @@ class IngresosSeeder extends Seeder
 
         //usuario 1
         Ingreso::create([
-            'descripcion' => "sueldo octubre",
+            'descripcion' => "sueldo diciembre",
             'importe' => "100000",
             'user_id' => "1",
             'categoria_id' => "1",
-            'periodoCorrespondiente' => "11/2023"
+            'periodoCorrespondiente' => "12/2023"
         ]);
 
         Ingreso::create([

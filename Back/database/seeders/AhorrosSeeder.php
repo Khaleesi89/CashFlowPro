@@ -39,7 +39,7 @@ class AhorrosSeeder extends Seeder
             'user_id' => "1",
             'meta_id' => "1",
             'importe' => "23000",
-            'periodoCorrespondiente' => "11/2023"
+            'periodoCorrespondiente' => "12/2023"
         ]);
 
 
@@ -65,7 +65,7 @@ class AhorrosSeeder extends Seeder
             'user_id' => "1",
             'meta_id' => "3",
             'importe' => "2000",
-            'periodoCorrespondiente' => "08/2023"
+            'periodoCorrespondiente' => "12/2023"
         ]);
 
         
